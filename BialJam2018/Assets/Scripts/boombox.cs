@@ -30,11 +30,15 @@ public class boombox : MonoBehaviour
     IEnumerator findAndKill()
     {
         Debug.Log("iksde");
-        if (Physics.Raycast(this.transform.position,hymm[0].position- this.transform.position,out RaycastHit transform))
+        RaycastHit[] rh;
+        rh = new RaycastHit[2];
+        Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
+        Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
+        if (rh[1].transform.gameObject.tag == hymm[1].gameObject.tag&&Vector3.Distance(this.transform.position,hymm[1].position)> Vector3.Distance(this.transform.position, hymm[0].position))
         {
             target.position = hymm[1].position;
         }
-        else
+        else if(rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
             target.position = hymm[0].position;
         }
