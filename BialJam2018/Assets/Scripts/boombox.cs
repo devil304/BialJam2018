@@ -21,6 +21,7 @@ public class boombox : MonoBehaviour
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
         StartCoroutine(findAndKill());
+        target = hymm[2];
     }
 
     // Update is called once per frame
@@ -37,26 +38,26 @@ public class boombox : MonoBehaviour
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
         if((2*Vector3.Distance(this.transform.position,hymm[2].position)<Vector3.Distance(this.transform.position,hymm[0].position)&& 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position))||(rh[0].transform.tag!="Player"&& rh[1].transform.tag != "Player"))
         {
-            target.position = hymm[2].position;
+            target = hymm[2];
         }
         else if(rh[1].transform.gameObject.tag == hymm[1].gameObject.tag && rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
             if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
             {
-                target.position = hymm[0].position;
+                target = hymm[0];
             }
             else
             {
-                target.position = hymm[1].position;
+                target = hymm[1];
             }
         }
         else if(rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
-            target.position = hymm[0].position;
+            target = hymm[0];
         }
         else
         {
-            target.position = hymm[1].position;
+            target = hymm[1];
         }
         yield return new WaitForSeconds(2.5f);
         StartCoroutine(findAndKill());
