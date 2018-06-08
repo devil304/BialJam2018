@@ -7,7 +7,6 @@ public class NavMeshBaker : MonoBehaviour {
     // Use this for initialization
     public NavMeshSurface[] surfaces;
     public Transform[] objectsToRotate;
-    public bool toBeBaked = false;
     // Use this for initialization
     void Start()
     {
@@ -18,12 +17,14 @@ public class NavMeshBaker : MonoBehaviour {
     }
     void Update()
     {
-        if (toBeBaked)
+        
+    }
+    void beBaked()
+    {
+        for (int i = 0; i < surfaces.Length; i++)
         {
-            for (int i = 0; i < surfaces.Length; i++)
-            {
-                surfaces[i].BuildNavMesh();
-            }
+             surfaces[i].BuildNavMesh();
         }
+
     }
 }
