@@ -47,6 +47,7 @@ public class cebula : MonoBehaviour
     {
 
         Rigidbody tmp = Instantiate(rb,transsexualista.position,transsexualista.rotation);
+        tmp.gameObject.GetComponent<Rigidbody>().velocity =new Vector3(0,1.5f,2);
         yield return new WaitForSeconds(tor);
         StartCoroutine(shootAndKill());
     }
