@@ -83,6 +83,7 @@ public class serv : MonoBehaviour {
         {
             if(ids[ti] == netMsg.conn.connectionId)
             {
+                //if()
                 cube[ti].Rotate(tmp);
             }
         }
