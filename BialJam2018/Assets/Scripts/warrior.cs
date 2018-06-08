@@ -28,30 +28,35 @@ public class warrior : MonoBehaviour {
 	}
     IEnumerator findAndKill()
     {
-        if (Vector3.Distance(this.transform.position, hymm[1].position) < Vector3.Distance(this.transform.position, hymm[0].position))
+        Debug.Log("iksde");
+        RaycastHit[] rh;
+        rh = new RaycastHit[2];
+        Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
+        Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
+        if ((2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[0].position) && 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position)) || (rh[0].transform.tag != "Player" && rh[1].transform.tag != "Player"))
         {
-            if(2*Vector3.Distance(this.transform.position, hymm[1].position)< Vector3.Distance(this.transform.position, hymm[2].position))
-            {
-                target = hymm[1];
-            }
-            else
-            {
-                target = hymm[2];
-            }
-            
+            target = hymm[2];
         }
-        else
+        else if (rh[1].transform.gameObject.tag == hymm[1].gameObject.tag && rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
-            if (2*Vector3.Distance(this.transform.position, hymm[0].position) < Vector3.Distance(this.transform.position, hymm[2].position))
+            if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
             {
                 target = hymm[0];
             }
             else
             {
-                target = hymm[2];
+                target = hymm[1];
             }
         }
-        yield return new WaitForSeconds(0.5f);
+        else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
+        {
+            target = hymm[0];
+        }
+        else
+        {
+            target = hymm[1];
+        }
+        yield return new WaitForSeconds(2.5f);
         StartCoroutine(findAndKill());
     }
 }
