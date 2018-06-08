@@ -37,3 +37,4 @@ sysinfo.txt
 *.unitypackage
 sh.exe.stackdump
 *.stackdump
+*.stackdump
