@@ -5,15 +5,17 @@ using UnityEngine.AI;
 
 public class cebula : MonoBehaviour
 {
-
     public float hp;
-    protected UnityEngine.AI.NavMeshAgent nma;
-    public Transform[] hymm;
-    public Transform target;
+    protected NavMeshAgent nma;
+    public Transform[] hymm; 
+    private Transform target;
+    public float range;
+    public float tor;
+    // Use this for initialization
     void Start()
     {
         hymm = new Transform[3];
-        nma = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        nma = this.GetComponent<NavMeshAgent>();
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < 2; i++)
         {
@@ -21,20 +23,39 @@ public class cebula : MonoBehaviour
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
         StartCoroutine(findAndKill());
+        target = hymm[2];
     }
+
+    // Update is called once per frame
     void Update()
     {
-        nma.destination = target.position;
+        RaycastHit rh;
+        Physics.Raycast(this.transform.position, hymm[2].position - this.transform.position, out rh, Vector3.Distance(this.transform.position, hymm[2].position) + 1, 9);
+        if (rh.transform.gameObject.tag == hymm[2].gameObject.tag && Vector3.Distance(this.transform.position, hymm[2].position) < range)
+        {
+            nma.destination = this.gameObject.transform.position;
+            StartCoroutine(shootAndKill());
+        }
+        else
+        {
+            nma.destination = target.position;
+        }
+    }
+    IEnumerator shootAndKill()
+    {
 
+        yield return new WaitForSeconds(tor);
+
+        StartCoroutine(shootAndKill());
     }
     IEnumerator findAndKill()
     {
         Debug.Log("iksde");
         RaycastHit[] rh;
         rh = new RaycastHit[2];
-        Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
-        Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
-        if ((2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[0].position) && 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position)) || (rh[0].transform.tag != "Player" && rh[1].transform.tag != "Player"))
+        Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1], Vector3.Distance(this.transform.position, hymm[1].position) + 1, 9);
+        Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0], Vector3.Distance(this.transform.position, hymm[0].position) + 1, 9);
+        if ((2 * Vector3.Distance(this.transform.position, hymm[2].position) + range < Vector3.Distance(this.transform.position, hymm[0].position) + range && 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position)) || (rh[0].transform.tag != "Player" && rh[1].transform.tag != "Player"))
         {
             target = hymm[2];
         }
@@ -57,7 +78,7 @@ public class cebula : MonoBehaviour
         {
             target = hymm[1];
         }
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(tor);
         StartCoroutine(findAndKill());
     }
 }
