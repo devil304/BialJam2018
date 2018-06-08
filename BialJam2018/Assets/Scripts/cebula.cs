@@ -45,7 +45,6 @@ public class cebula : MonoBehaviour
     {
 
         yield return new WaitForSeconds(tor);
-
         StartCoroutine(shootAndKill());
     }
     IEnumerator findAndKill()
