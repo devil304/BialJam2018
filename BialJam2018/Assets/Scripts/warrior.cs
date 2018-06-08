@@ -15,6 +15,7 @@ public class warrior : MonoBehaviour {
         {
             hymm[i] = temp[i].transform;
         }
+        StartCoroutine(findAndKill());
     }
 	
 	// Update is called once per frame
@@ -24,6 +25,7 @@ public class warrior : MonoBehaviour {
 	}
     IEnumerator findAndKill()
     {
+        Debug.Log("iksde");
         if (Vector3.Distance(this.transform.position, hymm[1].position) < Vector3.Distance(this.transform.position, hymm[0].position))
         {
             nma.destination = hymm[1].position;
@@ -32,6 +34,7 @@ public class warrior : MonoBehaviour {
         {
             nma.destination = hymm[0].position;
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2.5f);
+        StartCoroutine(findAndKill());
     }
 }
