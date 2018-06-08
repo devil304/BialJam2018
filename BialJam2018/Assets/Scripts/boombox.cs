@@ -9,6 +9,8 @@ public class boombox : MonoBehaviour
     protected NavMeshAgent nma;
     public Transform[] hymm;
     private Transform target;
+    public float range;
+    public float tor;
     // Use this for initialization
     void Start()
     {
@@ -21,44 +23,54 @@ public class boombox : MonoBehaviour
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
         StartCoroutine(findAndKill());
+        target = hymm[2];
     }
 
     // Update is called once per frame
     void Update()
     {
-        nma.destination = target.position;
+        RaycastHit rh;
+        Physics.Raycast(this.transform.position, hymm[2].position - this.transform.position, out rh,Vector3.Distance(this.transform.position, hymm[2].position)+1,9);
+        if (rh.transform.gameObject.tag==hymm[2].gameObject.tag&& Vector3.Distance(this.transform.position, hymm[2].position)>range)
+        {
+
+        }
+        else
+        {
+            nma.destination = target.position;
+        }
     }
     IEnumerator findAndKill()
     {
         Debug.Log("iksde");
         RaycastHit[] rh;
         rh = new RaycastHit[2];
-        Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
-        Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
-        if((2*Vector3.Distance(this.transform.position,hymm[2].position)<Vector3.Distance(this.transform.position,hymm[0].position)&& 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position))||(rh[0].transform.tag!="Player"&& rh[1].transform.tag != "Player"))
+        Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1], Vector3.Distance(this.transform.position, hymm[1].position)+1, 9);
+        Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0], Vector3.Distance(this.transform.position, hymm[0].position)+1, 9);
+        if((2*Vector3.Distance(this.transform.position,hymm[2].position)+range<Vector3.Distance(this.transform.position,hymm[0].position)+range&& 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position))||(rh[0].transform.tag!="Player"&& rh[1].transform.tag != "Player"))
         {
-            target.position = hymm[2].position;
+            target = hymm[2];
         }
         else if(rh[1].transform.gameObject.tag == hymm[1].gameObject.tag && rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
             if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
             {
-                target.position = hymm[0].position;
+                target = hymm[0];
             }
             else
             {
-                target.position = hymm[1].position;
+                target = hymm[1];
             }
         }
         else if(rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
-            target.position = hymm[0].position;
+            target = hymm[0];
         }
         else
         {
-            target.position = hymm[1].position;
+            target = hymm[1];
         }
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(tor);
         StartCoroutine(findAndKill());
     }
 }
