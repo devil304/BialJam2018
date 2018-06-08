@@ -4,11 +4,18 @@ using UnityEngine.Networking;
 public class serv : MonoBehaviour {
     public int[] ids;
     public Transform[] cube;
+    public struct touchcontrol
+    {
+        public int phase;
+        public Vector2 pos;
+        public int fid;
+        public int tc;
+    }
     public class RegisterHostMessage : MessageBase
     {
         public Vector3 rotaterate;
         public Vector3 accel;
-        public Touch[] tc;
+        public touchcontrol[] tc;
     }
     public string ip = "0";
     // Use this for initialization
@@ -68,7 +75,9 @@ public class serv : MonoBehaviour {
     public void messrecived(NetworkMessage netMsg)
     {
         Vector3 tmp = netMsg.ReadMessage<RegisterHostMessage>().rotaterate;
-        Debug.Log(tmp);
+        Vector3 tmpx = netMsg.ReadMessage<RegisterHostMessage>().accel;
+        int hymm = netMsg.ReadMessage<RegisterHostMessage>().tc.Length;
+        Debug.Log(tmp+" # "+tmpx + " # " +hymm);
         for(int ti=0;ti<ids.Length;ti++)
         {
             if(ids[ti] == netMsg.conn.connectionId)
