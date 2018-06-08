@@ -1,9 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Networking;
 
 public class serv : MonoBehaviour {
     public int[] ids;
     public Transform[] cube;
+    public Color newcol;
+    public Color test;
+    public float[] tess;
+    public bool tests = false;
     public struct touchcontrol
     {
         public int phase;
@@ -53,6 +58,9 @@ public class serv : MonoBehaviour {
         Debug.Log("Error connecting with code " + nm.ToString());
     }
     void Start () {
+        tess = new float[2];
+        tess[0] = -100;
+        tess[1] = 100;
         DontDestroyOnLoad(this.gameObject);
         if (ip != "0")
         {
@@ -77,15 +85,27 @@ public class serv : MonoBehaviour {
         RegisterHostMessage rhm = netMsg.ReadMessage<RegisterHostMessage>();
         Vector3 tmp = rhm.rotaterate;
         Vector3 tmpx = rhm.accel;
+        if(tmpx.y > tess[0])
+        {
+            tess[0] = tmpx.y;
+        }else if (tmpx.y < tess[1])
+        {
+            tess[1] = tmpx.y;
+        }
         int hymm = rhm.tc.Length;
         Debug.Log(tmp+" # "+tmpx + " # " +hymm);
         for(int ti=0;ti<ids.Length;ti++)
         {
             if(ids[ti] == netMsg.conn.connectionId)
             {
-                if ()
+                if (tests&& tmpx.y < -1.5)
                 {
-
+                    test = newcol;
+                    tests = false;
+                }
+                if (tmpx.y>3.5)
+                {
+                    tests = true;
                 }
                 cube[ti].Rotate(tmp);
             }
