@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class cebula : MonoBehaviour {
+public class cebula : MonoBehaviour
+{
 
     public float hp;
     protected NavMeshAgent nma;
