@@ -83,7 +83,7 @@ public class serv : MonoBehaviour {
         {
             if(ids[ti] == netMsg.conn.connectionId)
             {
-                if ()
+                if (true)
                 {
 
                 }
