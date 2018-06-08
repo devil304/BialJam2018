@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class boombox : MonoBehaviour
 {
     public float hp;
-    protected NavMeshAgent nma;
-    public Transform[] hymm;
+    private NavMeshAgent nma;
+    private Transform[] hymm;
     private Transform target;
     public float range;
     public float tor;
@@ -33,17 +33,13 @@ public class boombox : MonoBehaviour
         Physics.Raycast(this.transform.position, hymm[2].position - this.transform.position, out rh,Vector3.Distance(this.transform.position, hymm[2].position)+1,9);
         if (rh.transform.gameObject.tag==hymm[2].gameObject.tag&& Vector3.Distance(this.transform.position, hymm[2].position)>range)
         {
-            gin_nierobie();
+            this.gameObject.GetComponentInChildren<boom>().chydysz = true;
         }
         else
         {
+            this.gameObject.GetComponentInChildren<boom>().chydysz = false;
             nma.destination = target.position;
         }
-    }
-    IEnumerator gin_nierobie()
-    {
-
-        yield return new WaitForSeconds(tor);
     }
     IEnumerator findAndKill()
     {
