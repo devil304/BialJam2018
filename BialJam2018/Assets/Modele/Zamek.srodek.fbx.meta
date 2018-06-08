@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 117a1bb64d7a8ed49a7f01f4d34fe81d
-=======
-<<<<<<< HEAD
-guid: 7e2d074959b4ba3498c582f8810ba007
-=======
-guid: 8f04bab70aa3bd0498dd37a516d606cc
->>>>>>> 5f8b4c6040983e3be6859739fb5d9e2cb1437927
->>>>>>> b1e791bb05b8eb63b14179c50e5b7b6a2d631272
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -17,6 +9,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Zamek.srodek
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -92,7 +85,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
