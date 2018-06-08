@@ -1,28 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class warrior : MonoBehaviour {
+public class cebula : MonoBehaviour {
+
     public float hp;
     protected NavMeshAgent nma;
     public Transform[] hymm;
     public Transform target;
-	void Start () {
+    void Start()
+    {
         hymm = new Transform[3];
         nma = this.GetComponent<NavMeshAgent>();
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
-        for(int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
             hymm[i] = temp[i].transform;
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
         StartCoroutine(findAndKill());
     }
-	void Update () {
+    void Update()
+    {
         nma.destination = target.position;
-        
-	}
+
+    }
     IEnumerator findAndKill()
     {
         Debug.Log("iksde");
