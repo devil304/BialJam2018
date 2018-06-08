@@ -4,9 +4,16 @@ using UnityEngine.Networking;
 public class serv : MonoBehaviour {
     public int[] ids;
     public Transform[] cube;
+    public struct touchcontrol
+    {
+        public int phase;
+        public Vector2 pos;
+    }
     public class RegisterHostMessage : MessageBase
     {
         public Vector3 rotaterate;
+        public Vector3 accel;
+        public touchcontrol[] tc;
     }
     public string ip = "0";
     // Use this for initialization
