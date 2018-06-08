@@ -74,9 +74,10 @@ public class serv : MonoBehaviour {
 	}
     public void messrecived(NetworkMessage netMsg)
     {
-        Vector3 tmp = netMsg.ReadMessage<RegisterHostMessage>().rotaterate;
-        Vector3 tmpx = netMsg.ReadMessage<RegisterHostMessage>().accel;
-        int hymm = netMsg.ReadMessage<RegisterHostMessage>().tc.Length;
+        RegisterHostMessage rhm = netMsg.ReadMessage<RegisterHostMessage>();
+        Vector3 tmp = rhm.rotaterate;
+        Vector3 tmpx = rhm.accel;
+        int hymm = rhm.tc.Length;
         Debug.Log(tmp+" # "+tmpx + " # " +hymm);
         for(int ti=0;ti<ids.Length;ti++)
         {
