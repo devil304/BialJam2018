@@ -9,11 +9,12 @@ public class boom : MonoBehaviour {
     IEnumerator jep()
     {
         Instantiate(falus);
-        falus.AddForce(Vector3.forward*pren,ForceMode.Impulse);
+        falus.SendMessage("Start", this.gameObject.GetComponentInParent<boombox>().range);
+        falus.gameObject.GetComponent<Rigidbody>().velocity=Vector3.forward*pren;
         yield return new WaitForSeconds(this.gameObject.GetComponentInParent<boombox>().tor);
         if (chydysz)
-        { StartCoroutine(jep());
-
+        {
+            StartCoroutine(jep());
         }
     }
 }

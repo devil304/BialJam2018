@@ -11,6 +11,8 @@ public class cebula : MonoBehaviour
     private Transform target;
     public float range;
     public float tor;
+    public Rigidbody rb;
+    public Transform transsexualista;
     // Use this for initialization
     void Start()
     {
@@ -44,6 +46,8 @@ public class cebula : MonoBehaviour
     IEnumerator shootAndKill()
     {
 
+        Rigidbody tmp = Instantiate(rb,transsexualista.position,transsexualista.rotation);
+        tmp.gameObject.GetComponent<Rigidbody>().velocity =new Vector3(0,1.5f,2);
         yield return new WaitForSeconds(tor);
         StartCoroutine(shootAndKill());
     }
