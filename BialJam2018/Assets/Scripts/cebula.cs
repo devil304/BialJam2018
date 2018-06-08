@@ -5,13 +5,13 @@ using UnityEngine;
 public class cebula : MonoBehaviour {
 
     public float hp;
-    protected NavMeshAgent nma;
+    protected UnityEngine.AI.NavMeshAgent nma;
     public Transform[] hymm;
     public Transform target;
     void Start()
     {
         hymm = new Transform[3];
-        nma = this.GetComponent<NavMeshAgent>();
+        nma = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < 2; i++)
         {
