@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class warrior : MonoBehaviour {
-    public float hp,tor,odl;
+    public float hp,tor,zas;
     protected NavMeshAgent nma;
     public Transform[] hymm;
     private float hpp, preh;
     public Transform target;
+    public Object anim;
 	void Start ()
     {
         preh = hp;
@@ -31,7 +32,17 @@ public class warrior : MonoBehaviour {
         hpp = ho.h;
     }
     void Update () {
-        nma.destination = target.position;
+        if (Vector3.Distance(this.transform.position, target.position) < zas)
+        {
+            this.transform.LookAt(target);
+            nma.destination = this.transform.position;
+            
+
+        }
+        else
+        {
+            nma.destination = target.position;
+        }
         hp += hpp;
         if (hp > preh)
         {
