@@ -12,12 +12,11 @@ public class boombox : MonoBehaviour
     public float range,tor,pr,pt,ph;
     bool dod;
     private float hpp;
-    private List<GameObject> targets = new List<GameObject>();
     public struct boost
     {
         public float r, t, h;
     }
-    boost uu;
+    public boost uu;
     // Use this for initialization
     void Start()
     {
@@ -31,7 +30,7 @@ public class boombox : MonoBehaviour
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
         StartCoroutine(findAndKill());
         target = hymm[2];
-        this.gameObject.GetComponent<SphereCollider>().radius = range;
+        this.gameObject.GetComponentInChildren<SphereCollider>().radius = range;
         uu = new boost();
         uu.h = ph;
         uu.r = pr;
@@ -53,18 +52,18 @@ public class boombox : MonoBehaviour
         if (rh.transform.gameObject.tag==target.gameObject.tag && Vector3.Distance(this.transform.position, target.position)<range)
         {
             this.transform.LookAt(target);
-            foreach (Transform child in transform)
+            for (int i=0;i<2;i++)
             {
-                child.GetComponent<boom>().chydysz = true;
+                this.transform.GetChild(i).GetComponent<boom>().chydysz = true;
             }
             nma.destination = this.transform.position;
             
         }
         else
         {
-            foreach (Transform child in transform)
+            for (int i = 0; i < 2; i++)
             {
-                child.GetComponent<boom>().chydysz = false;
+                this.transform.GetChild(i).GetComponent<boom>().chydysz = false;
             }
             nma.destination = target.position;
         }
@@ -105,27 +104,5 @@ public class boombox : MonoBehaviour
         }
         yield return new WaitForSeconds(tor);
         StartCoroutine(findAndKill());
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if (!targets.Contains(other.gameObject))
-        {
-            Debug.Log("eeee");
-            targets.Add(other.gameObject);
-            other.SendMessage("Kanapka_Z_Dzemem", uu);
-        }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (targets.Contains(other.gameObject))
-        {
-            boost us;
-            us = new boost();
-            us.h = 0;
-            us.t = 0;
-            us.r = 0;
-            targets.Remove(other.gameObject);
-            other.SendMessage("Kanapka_Z_Dzemem", us);
-        }
     }
 }
