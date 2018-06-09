@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:BialJam2018/Assets/Modele/Luk skalowany.fbx.meta
 guid: a0769d11e243c3e428bc9d379bbc98c8
-=======
-guid: 280a2b0b77c7ce94ba36d098f775fe1b
->>>>>>> bfde76197e30bc305ebcb749eda529da0c0d68e3:BialJam2018/Assets/Modele/Luk skalowany.fbx.meta
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -20,6 +16,7 @@ ModelImporter:
     2300000: Cylinder
     3300000: Cylinder
     4300000: Cylinder
+    9500000: //RootNode
     10800000: Lamp
   externalObjects: {}
   materials:
@@ -96,7 +93,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
