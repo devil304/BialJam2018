@@ -11,7 +11,8 @@ public class boombox : MonoBehaviour
     private Transform target;
     public float range,tor,pr,pt,ph;
     bool dod;
-    private float hpp;
+    private float hpp,preh;
+    List<GameObject> targets = new List<GameObject>();
     public struct boost
     {
         public float r, t, h;
@@ -20,6 +21,7 @@ public class boombox : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        preh = hp;
         hymm = new Transform[3];
         nma = this.GetComponent<NavMeshAgent>();
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
@@ -68,9 +70,9 @@ public class boombox : MonoBehaviour
             nma.destination = target.position;
         }
         hp += hpp;
-        if (hp > 100)
+        if (hp > preh)
         {
-            hp = 100;
+            hp = preh;
         }
     }
     IEnumerator findAndKill()

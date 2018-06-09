@@ -11,6 +11,7 @@ public class cebula : MonoBehaviour
     private Transform target;
     public float range;
     public float tor;
+    private float hpp, preh;
     public Rigidbody rb;
     public Transform transsexualista;
     public RaycastHit[] rh;
@@ -22,6 +23,8 @@ public class cebula : MonoBehaviour
     }
     void Start()
     {
+        preh = hp;
+        hpp = 0;
         nma = this.GetComponent<NavMeshAgent>();
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < 2; i++)
@@ -33,7 +36,20 @@ public class cebula : MonoBehaviour
         StartCoroutine(findAndKill());
         StartCoroutine(shootAndKill());
     }
-
+    private void Update()
+    {
+        hp += hpp;
+        if (hp > preh)
+        {
+            hp = preh;
+        }
+    }
+    public void Kanapka(boombox.boost ho)
+    {
+        range += ho.r;
+        tor /= ho.t;
+        hpp = ho.h;
+    }
     private void RotateTowards(Transform target)
     {
         Vector3 direction = (target.position - transform.position).normalized;
