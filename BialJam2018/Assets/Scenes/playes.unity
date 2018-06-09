@@ -272,7 +272,7 @@ MonoBehaviour:
   test: {r: 0.21960786, g: 1, b: 0, a: 0}
   tess: []
   tests: 0
-  lolnope: 0.5
+  lolnope: 1
   ip: 0
 --- !u!1 &827384675
 GameObject:
