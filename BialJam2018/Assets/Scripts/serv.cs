@@ -22,6 +22,9 @@ public class serv : MonoBehaviour {
     public Quaternion[] startrtrot;
     public float forcorr;
     public float tmpxx, tmpy, tmpz;
+    public Camera mc;
+    public RenderTexture[] rtx;
+    public Camera[] cameras;
     public struct touchcontrol
     {
         public int phase;
@@ -71,6 +74,11 @@ public class serv : MonoBehaviour {
         Debug.Log("Error connecting with code " + nm.ToString());
     }
     void Start () {
+        foreach(RenderTexture rtt in rtx)
+        {
+            rtt.width = mc.pixelWidth / 2;
+            rtt.height = mc.pixelHeight;
+        }
         notmoved = new bool[2];
         lastphase = new int[2];
         startrot = new Quaternion[2];
@@ -143,10 +151,44 @@ public class serv : MonoBehaviour {
                     {
                         tests = true;
                     }
+                    if (rt[ti].anchoredPosition.x <= -500)
+                    {
+                        if (tmp.x * lolnope > 0)
+                        {
+                            rt[ti].Translate(Vector3.up * tmp.x * lolnope);
+                        }
+                    }
+                    else if (rt[ti].anchoredPosition.x >= 500)
+                    {
+                        if (tmp.x * lolnope < 0)
+                        {
+                            rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
+                        }
+                    }
+                    else
+                    {
+                        rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
+                    }
+                    if (rt[ti].anchoredPosition.y <= -400)
+                    {
+                        if (-tmp.z * lolnope > 0)
+                        {
+                            rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
+                        }
+                    }
+                    else if (rt[ti].anchoredPosition.y >= 400)
+                    {
+                        if (-tmp.z * lolnope < 0)
+                        {
+                            rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
+                        }
+                    }
+                    else
+                    {
+                        rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
+                    }
                     cube[ti].transform.Translate(Vector3.up * -tmp.x * lolnope);
                     cube[ti].transform.Translate(Vector3.right * tmp.z * lolnope);
-                    rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope*5);
-                    rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope*5);
                     rt[ti].Rotate(Vector3.forward * -tmp.y);
                     cube[ti].Rotate(Vector3.forward * tmp.y);
                 }
@@ -200,8 +242,42 @@ public class serv : MonoBehaviour {
                         float corry = tmp.y - forcorr;
                         cube[ti].transform.Translate(Vector3.up * corrx * lolnope);
                         cube[ti].transform.Translate(Vector3.right * -corrz * lolnope);
-                        rt[ti].transform.Translate(Vector3.up * corrx * lolnope * 5);
-                        rt[ti].transform.Translate(Vector3.right * -corrz * lolnope * 5);
+                        /*if (rt[ti].transform.position.x <= -500)
+                        {
+                            if (corrx * lolnope > 0)
+                            {
+                                rt[ti].transform.Translate(Vector3.up * corrx * lolnope * 15);
+                            }
+                        }
+                        else if (rt[ti].transform.position.x >= 500)
+                        {
+                            if (corrx * lolnope < 0)
+                            {
+                                rt[ti].transform.Translate(Vector3.up * corrx * lolnope * 15);
+                            }
+                        }
+                        else
+                        {
+                            rt[ti].transform.Translate(Vector3.up * corrx * lolnope * 15);
+                        }
+                        if (rt[ti].transform.position.y <= -400)
+                        {
+                            if (-corrz * lolnope > 0)
+                            {
+                                rt[ti].transform.Translate(Vector3.right * -corrz * lolnope * 15);
+                            }
+                        }
+                        else if (rt[ti].transform.position.y >= 400)
+                        {
+                            if (-corrz * lolnope < 0)
+                            {
+                                rt[ti].transform.Translate(Vector3.right * -corrz * lolnope * 15);
+                            }
+                        }
+                        else
+                        {
+                            rt[ti].transform.Translate(Vector3.right * -corrz * lolnope * 15);
+                        }*/
                         rt[ti].Rotate(Vector3.forward * -corry);
                         cube[ti].Rotate(Vector3.forward * -corry);
                     }
