@@ -1016,8 +1016,6 @@ Transform:
   - {fileID: 1134651099}
   - {fileID: 306669322}
   - {fileID: 1273721080}
-  - {fileID: 1093549339}
-  - {fileID: 1742130224}
   - {fileID: 212515833}
   - {fileID: 1117330115}
   - {fileID: 214258557}
@@ -1039,8 +1037,6 @@ Transform:
   - {fileID: 760535163}
   - {fileID: 1505961625}
   - {fileID: 371584200}
-  - {fileID: 1852195418}
-  - {fileID: 1599436493}
   - {fileID: 1512218987}
   - {fileID: 855197771}
   - {fileID: 1349270995}
@@ -1051,7 +1047,6 @@ Transform:
   - {fileID: 1006388836}
   - {fileID: 1850290538}
   - {fileID: 1754442953}
-  - {fileID: 2042155067}
   - {fileID: 1677120218}
   - {fileID: 859221359}
   - {fileID: 1287364622}
@@ -1068,7 +1063,6 @@ Transform:
   - {fileID: 566917078}
   - {fileID: 1623270198}
   - {fileID: 784837518}
-  - {fileID: 760171248}
   - {fileID: 1023417040}
   - {fileID: 453917527}
   - {fileID: 1592764713}
@@ -3609,6 +3603,40 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d01cfa3cc01c6df4fb5c1dd10a736ddc, type: 3}
   m_PrefabInternal: {fileID: 453917526}
+--- !u!1 &469146328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 469146329}
+  m_Layer: 0
+  m_Name: gates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &469146329
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 469146328}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -472, y: 0.0042705536, z: 172}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1093549339}
+  - {fileID: 1742130224}
+  - {fileID: 1852195418}
+  - {fileID: 1599436493}
+  - {fileID: 2042155067}
+  - {fileID: 760171248}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &471000220
 Prefab:
   m_ObjectHideFlags: 0
@@ -5261,19 +5289,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 109093775}
+    m_TransformParent: {fileID: 469146329}
     m_Modifications:
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58.91214
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -52.195755
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.x
@@ -5281,7 +5309,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.z
@@ -5289,19 +5317,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_RootOrder
-      value: 112
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_Name
-      value: Zamek brama (9)
+      value: gate6
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
@@ -7261,19 +7297,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 109093775}
+    m_TransformParent: {fileID: 469146329}
     m_Modifications:
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.91214
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.195755
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7281,7 +7317,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.z
@@ -7289,15 +7325,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_RootOrder
-      value: 60
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_Name
-      value: Zamek brama (4)
+      value: gate1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
@@ -10513,7 +10557,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 577d140c9afabf746be67bb096379979, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.42
+      value: -15.46
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 577d140c9afabf746be67bb096379979, type: 3}
       propertyPath: m_LocalRotation.x
@@ -10919,19 +10963,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 109093775}
+    m_TransformParent: {fileID: 469146329}
     m_Modifications:
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.91214
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.195755
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.x
@@ -10939,7 +10983,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.z
@@ -10947,19 +10991,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_RootOrder
-      value: 84
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_Name
-      value: Zamek brama (7)
+      value: gate4
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
@@ -12001,47 +12053,55 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 109093775}
+    m_TransformParent: {fileID: 469146329}
     m_Modifications:
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.91214
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.195755
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_RootOrder
-      value: 61
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_Name
-      value: Zamek brama (5)
+      value: gate2
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
@@ -13049,19 +13109,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 109093775}
+    m_TransformParent: {fileID: 469146329}
     m_Modifications:
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58.91214
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.195755
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.x
@@ -13069,7 +13129,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.z
@@ -13077,15 +13137,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_RootOrder
-      value: 83
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_Name
-      value: Zamek brama (6)
+      value: gate3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
@@ -14057,43 +14125,43 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 109093775}
+    m_TransformParent: {fileID: 469146329}
     m_Modifications:
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.91214
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -40.195755
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_RootOrder
-      value: 95
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_Name
-      value: Zamek brama (8)
+      value: gate5
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14102,6 +14170,14 @@ Prefab:
     - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b480416aa421144a83ec9c9a416bc58, type: 3}
