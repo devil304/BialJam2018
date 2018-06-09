@@ -10,6 +10,8 @@ public class warrior : MonoBehaviour {
     private float hpp, preh;
     public Transform target;
     public Object anim;
+    public GameObject[] gates;
+    private int rand;
 	void Start ()
     {
         preh = hp;
@@ -22,7 +24,26 @@ public class warrior : MonoBehaviour {
             hymm[i] = temp[i].transform;
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
-
+        rand = (int)Random.value * 5;
+        switch (rand)
+        {
+            case 1:
+                gates = new GameObject[2];
+                gates[0] = GameObject.Find("gate1");
+                gates[1] = GameObject.Find("gate2");
+                break;
+            case 2:
+                gates = new GameObject[3];
+                gates[0] = GameObject.Find("gate6");
+                gates[1] = GameObject.Find("gate5");
+                gates[2] = GameObject.Find("gate4");
+                break;
+            default:
+                gates = new GameObject[2];
+                gates[0] = GameObject.Find("gate3");
+                gates[1] = GameObject.Find("gate4");
+                break;
+        }
         StartCoroutine(findAndKill());
         
     }
@@ -57,7 +78,8 @@ public class warrior : MonoBehaviour {
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
         if ((2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[0].position) && 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position)) || (rh[0].transform.tag != "Player" && rh[1].transform.tag != "Player"))
         {
-            target = hymm[2];
+           // target = hymm[2];
+           
         }
         else if (rh[1].transform.gameObject.tag == hymm[1].gameObject.tag && rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
