@@ -23,7 +23,7 @@ public class cebul_fall : MonoBehaviour {
 
         try
         {
-           // collision.gameObject.SendMessage("Damage", 1);
+           collision.gameObject.SendMessage("Damage", 1);
         }
         catch
         {
