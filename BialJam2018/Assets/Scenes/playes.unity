@@ -478,17 +478,31 @@ MonoBehaviour:
   tess: []
   tests: 0
   lolnope: 1
-  lastphase: 0
-  starttrans: {x: 0, y: 0, z: 0}
-  startrot: {x: 0, y: 0, z: 0, w: 0}
-  notmoved: 0
+  lastphase: 
+  starttrans:
+  - {x: 3.281e-41, y: NaN, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 3.2844e-41, y: 0, z: 0}
+  startrot:
+  - {x: 3.281e-41, y: NaN, z: 0, w: 0}
+  - {x: 0, y: 0, z: 3.2844e-41, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 4.4999403e+24, y: 0, z: 6.9e-44, w: 0}
+  notmoved: 
   upcorrect: 0.0542
   leftcor: -0.015
   rt:
   - {fileID: 1494653848}
   - {fileID: 79378826}
-  startrttr: {x: 0, y: 0, z: 0}
-  startrtrot: {x: 0, y: 0, z: 0, w: 0}
+  startrttr:
+  - {x: 3.2863e-41, y: NaN, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 3.2782e-41, y: 0, z: 0}
+  startrtrot:
+  - {x: 3.2863e-41, y: NaN, z: 0, w: 0}
+  - {x: 0, y: 0, z: 3.2782e-41, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 4.4999403e+24, y: 0, z: 6.9e-44, w: 0}
   ip: 0
 --- !u!1 &827384675
 GameObject:
