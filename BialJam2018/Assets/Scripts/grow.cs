@@ -8,8 +8,13 @@ public class grow : MonoBehaviour {
     public float das1;
     public float damage;
 	// Use this for initialization
+<<<<<<< HEAD
+	public void strat (float dis) {
+        das = dis;
+=======
 	public void strat (float da) {
         das1 = da;
+>>>>>>> e6637f33ef8b3aee3c7c1dd145af0e51102b40e8
 	}
 	
 	// Update is called once per frame

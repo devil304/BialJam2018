@@ -13,10 +13,15 @@ public class cebula : MonoBehaviour
     public float tor;
     public Rigidbody rb;
     public Transform transsexualista;
-    // Use this for initialization
-    void Start()
+    public RaycastHit[] rh;
+    public float shootforce;
+    private void Awake()
     {
         hymm = new Transform[3];
+        rh = new RaycastHit[2];
+    }
+    void Start()
+    {
         nma = this.GetComponent<NavMeshAgent>();
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < 2; i++)
@@ -24,39 +29,43 @@ public class cebula : MonoBehaviour
             hymm[i] = temp[i].transform;
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
-        StartCoroutine(findAndKill());
         target = hymm[2];
+        StartCoroutine(findAndKill());
+        StartCoroutine(shootAndKill());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void RotateTowards(Transform target)
     {
-        RaycastHit rh;
-        Physics.Raycast(this.transform.position, hymm[2].position - this.transform.position, out rh, Vector3.Distance(this.transform.position, hymm[2].position) + 1, 9);
-        if (rh.transform.gameObject.tag == hymm[2].gameObject.tag && Vector3.Distance(this.transform.position, hymm[2].position) < range)
-        {
-            nma.destination = this.gameObject.transform.position;
-            StartCoroutine(shootAndKill());
-        }
-        else
-        {
-            StopCoroutine(shootAndKill());
-            nma.destination = target.position;
-        }
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 2);
+
     }
     IEnumerator shootAndKill()
     {
-
-        Rigidbody tmp = Instantiate(rb,transsexualista.position,transsexualista.rotation);
-        tmp.gameObject.GetComponent<Rigidbody>().velocity =new Vector3(0,1.5f,2);
-        yield return new WaitForSeconds(tor);
-        StartCoroutine(shootAndKill());
+        RaycastHit rh2;
+        Debug.Log("preshot");
+        Physics.Raycast(this.transform.position, target.position - this.transform.position, out rh2, Vector3.Distance(this.transform.position, target.position) + 1, 9);
+        if ((rh2.transform.gameObject.tag == "Statute"||rh2.transform.gameObject.tag == "Player") && Vector3.Distance(this.transform.position, target.position) < range)
+        {
+            this.transform.LookAt(target);
+            nma.destination = this.transform.position;
+            Rigidbody tmp = Instantiate(rb, transsexualista.position, transsexualista.rotation);
+            tmp.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.forward*shootforce,ForceMode.Impulse);
+            yield return new WaitForSeconds(tor);
+            StartCoroutine(shootAndKill());
+            Debug.Log("postshot");
+        }
+        else
+        {
+            nma.destination = target.position;
+            yield return new WaitForSeconds(tor);
+            StartCoroutine(shootAndKill());
+            Debug.Log("postnoshot");
+        } 
     }
     IEnumerator findAndKill()
-    {
-        Debug.Log("iksde");
-        RaycastHit[] rh;
-        rh = new RaycastHit[2];
+    {  
         Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1], Vector3.Distance(this.transform.position, hymm[1].position) + 1, 9);
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0], Vector3.Distance(this.transform.position, hymm[0].position) + 1, 9);
         if ((2 * Vector3.Distance(this.transform.position, hymm[2].position) + range < Vector3.Distance(this.transform.position, hymm[0].position) + range && 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position)) || (rh[0].transform.tag != "Player" && rh[1].transform.tag != "Player"))
