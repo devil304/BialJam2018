@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Statute
   - pass
+  - gate
   layers:
   - Default
   - TransparentFX
