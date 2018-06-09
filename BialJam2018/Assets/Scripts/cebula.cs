@@ -40,6 +40,7 @@ public class cebula : MonoBehaviour
         }
         else
         {
+            StopCoroutine(shootAndKill());
             nma.destination = target.position;
         }
     }
