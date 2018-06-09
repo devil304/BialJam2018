@@ -3,17 +3,12 @@ guid: 80ea330b61a5cdc4db416fb227fd4eb6
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Camera
-    100002: Cube
-    100004: Lamp
-    100006: Stonka
-    100008: //RootNode
-    400000: Camera
-    400002: Cube
-    400004: Lamp
-    400006: Stonka
-    400008: //RootNode
-    2000000: Camera
+    100000: Cube
+    100002: Stonka
+    100004: //RootNode
+    400000: Cube
+    400002: Stonka
+    400004: //RootNode
     2100000: Stonka
     2100002: Material
     2300000: Cube
@@ -22,7 +17,7 @@ ModelImporter:
     3300002: Stonka
     4300000: Stonka
     4300002: Cube
-    10800000: Lamp
+    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -33,7 +28,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stonka
-    second: {fileID: 2100000, guid: a1cb6d5596b450a4f9810f831de451cb, type: 2}
+    second: {fileID: 2100000, guid: 937926cefd172e349a78aecb38d9e3ee, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -108,7 +103,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

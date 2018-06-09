@@ -36,7 +36,7 @@ public class cebula : MonoBehaviour
             hymm[i] = temp[i].transform;
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
-        target = hymm[2];
+        
         rand = (int)Random.value * 5;
         switch (rand)
         {
@@ -57,6 +57,7 @@ public class cebula : MonoBehaviour
                 gates[1] = GameObject.Find("gate4");
                 break;
         }
+        target = gates[0].transform;
         StartCoroutine(findAndKill());
         StartCoroutine(shootAndKill());
     }
