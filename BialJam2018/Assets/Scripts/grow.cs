@@ -5,7 +5,7 @@ using UnityEngine;
 public class grow : MonoBehaviour {
     private float timer = 0;
     public float rate;
-    public float das1,das2;
+    public float das1;
     public float damage;
 	// Use this for initialization
 	public void strat (float da) {
