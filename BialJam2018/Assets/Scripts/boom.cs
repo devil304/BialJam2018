@@ -9,13 +9,13 @@ public class boom : MonoBehaviour {
     public float pren;
     public struct lol
     {
-        public float ran1, pren1;
+        public float tor1, pren1;
     }
     lol hu;
     private void Start()
     {
         hu = new lol();
-        hu.ran1 = this.gameObject.GetComponentInParent<boombox>().range;
+        hu.tor1 = this.gameObject.GetComponentInParent<boombox>().tor;
         hu.pren1 = pren;
     }
     void Update()
