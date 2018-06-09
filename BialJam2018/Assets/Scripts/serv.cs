@@ -18,13 +18,15 @@ public class serv : MonoBehaviour {
     public float upcorrect;
     public float leftcor;
     public RectTransform[] rt;
-    public Vector3[] startrttr;
+    public Vector2[] startrttr;
     public Quaternion[] startrtrot;
     public float forcorr;
     public float tmpxx, tmpy, tmpz;
     public Camera mc;
     public RenderTexture[] rtx;
     public Camera[] cameras;
+    public Transform[] cbs;
+    public float[] camwych;
     public struct touchcontrol
     {
         public int phase;
@@ -74,7 +76,10 @@ public class serv : MonoBehaviour {
         Debug.Log("Error connecting with code " + nm.ToString());
     }
     void Start () {
-        foreach(RenderTexture rtt in rtx)
+        camwych = new float[2];
+        camwych[0] = 0;
+        camwych[1] = 0;
+        foreach (RenderTexture rtt in rtx)
         {
             rtt.width = mc.pixelWidth / 2;
             rtt.height = mc.pixelHeight;
@@ -83,16 +88,16 @@ public class serv : MonoBehaviour {
         lastphase = new int[2];
         startrot = new Quaternion[2];
         startrtrot = new Quaternion[2];
-        startrttr = new Vector3[2];
+        startrttr = new Vector2[2];
         starttrans = new Vector3[2];
         starttrans[0] = cube[0].transform.position;
         startrot[0] = cube[0].transform.rotation;
-        startrttr[0] = rt[0].position;
-        startrtrot[0]= rt[0].rotation;
+        startrttr[0] = rt[0].anchoredPosition;
+        startrtrot[0]= rt[0].localRotation;
         starttrans[1] = cube[1].transform.position;
         startrot[1] = cube[1].transform.rotation;
-        startrttr[1] = rt[1].position;
-        startrtrot[1] = rt[1].rotation;
+        startrttr[1] = rt[1].anchoredPosition;
+        startrtrot[1] = rt[1].localRotation;
         tess = new float[2];
         tess[0] = -100;
         tess[1] = 100;
@@ -135,7 +140,7 @@ public class serv : MonoBehaviour {
             tess[1] = tmpx.y;
         }
         int hymm = rhm.tc.Length;
-        Debug.Log(tmp+" # "+tmpx + " # " +hymm);
+        //Debug.Log(tmp+" # "+tmpx + " # " +hymm);
         for(int ti=0;ti<ids.Length;ti++)
         {
             if(ids[ti] == netMsg.conn.connectionId)
@@ -157,16 +162,19 @@ public class serv : MonoBehaviour {
                         {
                             rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
                         }
-                        if (tmp.x * lolnope > 0)
+                        if (tmp.x * lolnope > 0 && camwych[ti] > -40)
                         {
-                            cameras[ti].transform.Rotate(Vector3.right * (lolnope * 50));
-                        }else if(rt[ti].anchoredPosition.y <= -500)
+                            cameras[ti].transform.Rotate(Vector3.right * (lolnope * 60));
+                            camwych[ti] -= (lolnope * 60);
+                        }
+                        else if(rt[ti].anchoredPosition.y <= -500)
                         {
                             rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
                         }
-                        else if (tmp.x * lolnope < 0)
+                        else if (tmp.x * lolnope < 0 && camwych[ti] > -40)
                         {
-                            cameras[ti].transform.Rotate(Vector3.right * ((lolnope * 50) - (tmp.x)));
+                            cameras[ti].transform.Rotate(Vector3.right * ((lolnope * 60) - (tmp.x)));
+                            camwych[ti] -= (lolnope * 60) - (tmp.x);
                         }
                     }
                     else if (rt[ti].anchoredPosition.y > 450)
@@ -175,16 +183,19 @@ public class serv : MonoBehaviour {
                         {
                             rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
                         }
-                        if(tmp.x * lolnope < 0)
+                        if(tmp.x * lolnope < 0 && camwych[ti] < 50)
                         {
-                            cameras[ti].transform.Rotate(Vector3.right * (-lolnope * 50));
-                        }else if(rt[ti].anchoredPosition.y >= 500)
+                            cameras[ti].transform.Rotate(Vector3.right * (-lolnope * 60));
+                            camwych[ti] -= (-lolnope * 60);
+                        }
+                        else if(rt[ti].anchoredPosition.y >= 500)
                         {
                             rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
                         }
-                        else if(tmp.x * lolnope > 0)
+                        else if(tmp.x * lolnope > 0 && camwych[ti] < 50)
                         {
-                            cameras[ti].transform.Rotate(Vector3.right * ((-lolnope*50) - (tmp.x)));
+                            cameras[ti].transform.Rotate(Vector3.right * ((-lolnope*60) - (tmp.x)));
+                            camwych[ti] -= (-lolnope * 60) - (tmp.x);
                         }
                     }
                     else
@@ -216,7 +227,7 @@ public class serv : MonoBehaviour {
                         }
                         if (-tmp.z * lolnope > 0)
                         {
-                            cameras[ti].transform.Rotate(-Vector3.up * (lolnope * 50));
+                            cbs[ti].transform.Rotate(-Vector3.up * (lolnope * 60));
                         }
                         else if (rt[ti].anchoredPosition.x <= -400)
                         {
@@ -224,7 +235,7 @@ public class serv : MonoBehaviour {
                         }
                         else if (-tmp.z * lolnope < 0)
                         {
-                            cameras[ti].transform.Rotate(-Vector3.up * ((lolnope * 50) - (-tmp.z)));
+                            cbs[ti].transform.Rotate(-Vector3.up * ((lolnope * 60) - (-tmp.z)));
                         }
                     }
                     else if (rt[ti].anchoredPosition.x > 350)
@@ -235,7 +246,7 @@ public class serv : MonoBehaviour {
                         }
                         if (-tmp.z * lolnope < 0)
                         {
-                            cameras[ti].transform.Rotate(-Vector3.up * (-lolnope * 50));
+                            cbs[ti].transform.Rotate(-Vector3.up * (-lolnope * 60));
                         }
                         else if (rt[ti].anchoredPosition.x >= 400)
                         {
@@ -243,7 +254,7 @@ public class serv : MonoBehaviour {
                         }
                         else if (-tmp.z * lolnope > 0)
                         {
-                            cameras[ti].transform.Rotate(-Vector3.up * ((-lolnope * 50) - (-tmp.z)));
+                            cbs[ti].transform.Rotate(-Vector3.up * ((-lolnope * 60) - (-tmp.z)));
                         }
                     }
                     else
@@ -311,17 +322,19 @@ public class serv : MonoBehaviour {
                             {
                                 rt[ti].transform.Translate(Vector3.up * corrx * lolnope);
                             }
-                            if (corrx * lolnope > 0)
+                            if (corrx * lolnope > 0 && camwych[ti] > -40)
                             {
-                                cameras[ti].transform.Rotate(Vector3.right * (lolnope * 50));
+                                cameras[ti].transform.Rotate(Vector3.right * (lolnope * 60));
+                                camwych[ti] -= (lolnope * 60);
                             }
                             else if (rt[ti].anchoredPosition.y <= -500)
                             {
                                 rt[ti].transform.Translate(Vector3.up * corrx * lolnope);
                             }
-                            else if (corrx * lolnope < 0)
+                            else if (corrx * lolnope < 0 && camwych[ti]> -40)
                             {
-                                cameras[ti].transform.Rotate(Vector3.right * ((lolnope * 50) - (corrx)));
+                                cameras[ti].transform.Rotate(Vector3.right * ((lolnope * 60) - (corrx)));
+                                camwych[ti] -= ((lolnope * 60) - (corrx));
                             }
                         }
                         else if (rt[ti].anchoredPosition.y > 450)
@@ -330,17 +343,19 @@ public class serv : MonoBehaviour {
                             {
                                 rt[ti].transform.Translate(Vector3.up * corrx * lolnope);
                             }
-                            if (corrx * lolnope < 0)
+                            if (corrx * lolnope < 0 && camwych[ti] < 50)
                             {
-                                cameras[ti].transform.Rotate(Vector3.right * (-lolnope * 50));
+                                cameras[ti].transform.Rotate(Vector3.right * (-lolnope * 60));
+                                camwych[ti] -= (-lolnope * 60);
                             }
                             else if (rt[ti].anchoredPosition.y >= 500)
                             {
                                 rt[ti].transform.Translate(Vector3.up * corrx * lolnope);
                             }
-                            else if (corrx * lolnope > 0)
+                            else if (corrx * lolnope > 0 && camwych[ti] < 50)
                             {
-                                cameras[ti].transform.Rotate(Vector3.right * ((-lolnope * 50) - (corrx)));
+                                cameras[ti].transform.Rotate(Vector3.right * ((-lolnope * 60) - (corrx)));
+                                camwych[ti] -= (-lolnope * 60) - (corrx);
                             }
                         }
                         else
@@ -373,7 +388,7 @@ public class serv : MonoBehaviour {
                             }
                             if (-corrz * lolnope > 0)
                             {
-                                cameras[ti].transform.Rotate(-Vector3.up * (lolnope * 50));
+                                cbs[ti].transform.Rotate(-Vector3.up * (lolnope * 60));
                             }
                             else if (rt[ti].anchoredPosition.x <= -400)
                             {
@@ -381,7 +396,7 @@ public class serv : MonoBehaviour {
                             }
                             else if (-corrz * lolnope < 0)
                             {
-                                cameras[ti].transform.Rotate(-Vector3.up * ((lolnope * 50) - (-corrz)));
+                                cbs[ti].transform.Rotate(-Vector3.up * ((lolnope * 60) - (-corrz)));
                             }
                         }
                         else if (rt[ti].anchoredPosition.x > 350)
@@ -392,7 +407,7 @@ public class serv : MonoBehaviour {
                             }
                             if (-corrz * lolnope < 0)
                             {
-                                cameras[ti].transform.Rotate(-Vector3.up * (-lolnope * 50));
+                                cbs[ti].transform.Rotate(-Vector3.up * (-lolnope * 60));
                             }
                             else if (rt[ti].anchoredPosition.x >= 400)
                             {
@@ -400,7 +415,7 @@ public class serv : MonoBehaviour {
                             }
                             else if (-corrz * lolnope > 0)
                             {
-                                cameras[ti].transform.Rotate(-Vector3.up * ((-lolnope * 50) - (-corrz)));
+                                cbs[ti].transform.Rotate(-Vector3.up * ((-lolnope * 60) - (-corrz)));
                             }
                         }
                         else
@@ -425,8 +440,8 @@ public class serv : MonoBehaviour {
                         Debug.Log("wtf");
                         cube[ti].transform.position = starttrans[ti];
                         cube[ti].transform.rotation = startrot[ti];
-                        rt[ti].rotation = startrtrot[ti];
-                        rt[ti].position = startrttr[ti];
+                        rt[ti].localRotation = startrtrot[ti];
+                        rt[ti].anchoredPosition = startrttr[ti];
                     }
                     lastphase[ti] = rhm.tc[0].phase;
                 }
