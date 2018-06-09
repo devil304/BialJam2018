@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class serv : MonoBehaviour {
     public int[] ids;
@@ -16,6 +17,9 @@ public class serv : MonoBehaviour {
     public bool notmoved;
     public float upcorrect;
     public float leftcor;
+    public RectTransform[] rt;
+    public Vector3 startrttr;
+    public Quaternion startrtrot;
     public struct touchcontrol
     {
         public int phase;
@@ -67,6 +71,8 @@ public class serv : MonoBehaviour {
     void Start () {
         starttrans = cube[0].transform.position;
         startrot = cube[0].transform.rotation;
+        startrttr = rt[0].position;
+        startrtrot = rt[0].rotation;
         tess = new float[2];
         tess[0] = -100;
         tess[1] = 100;
@@ -120,6 +126,8 @@ public class serv : MonoBehaviour {
                     }
                     cube[ti].transform.Translate(Vector3.up * -tmp.x * lolnope);
                     cube[ti].transform.Translate(Vector3.right * tmp.z * lolnope);
+                    rt[ti].transform.Translate(Vector3.up * -tmp.x * lolnope*5);
+                    rt[ti].transform.Translate(Vector3.right * tmp.z * lolnope*5);
                 }
                 else
                 {
@@ -135,6 +143,7 @@ public class serv : MonoBehaviour {
                     cube[ti].transform.Translate(Vector3.up * (-tmp.x-upcorrect) * lolnope);
                     cube[ti].transform.Translate(Vector3.right * (-tmp.z - leftcor) * lolnope);
                 }
+                rt[ti].Rotate(Vector3.forward * tmp.y);
                 cube[ti].Rotate(Vector3.forward * tmp.y);
                 if (rhm.tc.Length == 1)
                 {
@@ -150,6 +159,8 @@ public class serv : MonoBehaviour {
                         Debug.Log("wtf");
                         cube[ti].transform.position = starttrans;
                         cube[ti].transform.rotation = startrot;
+                        rt[ti].rotation = startrtrot;
+                        rt[ti].position = startrttr;
                     }
                     lastphase = rhm.tc[0].phase;
                 }
