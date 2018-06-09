@@ -39,7 +39,7 @@ public class boombox : MonoBehaviour
         uu.t = pt;
         hpp = 0;
     }
-    public void Kanapka_Z_Dzemem(boombox.boost ho)
+    public void Kanapka(boombox.boost ho)
     {
         range += ho.r;
         tor /= ho.t;
@@ -106,5 +106,26 @@ public class boombox : MonoBehaviour
         }
         yield return new WaitForSeconds(tor);
         StartCoroutine(findAndKill());
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == 9 && !targets.Contains(other.gameObject))
+        {
+            targets.Add(other.gameObject);
+            other.SendMessage("Kanapka", uu);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 9 && targets.Contains(other.gameObject))
+        {
+            boost us;
+            us = new boost();
+            us.r = -uu.r;
+            us.h = 0;
+            us.t = 1/uu.t;
+            targets.Remove(other.gameObject);
+            other.SendMessage("Kanapka", us);
+        }
     }
 }
