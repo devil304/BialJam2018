@@ -11,15 +11,15 @@ public class serv : MonoBehaviour {
     public float[] tess;
     public bool tests = false;
     public float lolnope;
-    public int lastphase;
-    public Vector3 starttrans;
-    public Quaternion startrot;
-    public bool notmoved;
+    public int[] lastphase;
+    public Vector3[] starttrans;
+    public Quaternion[] startrot;
+    public bool[] notmoved;
     public float upcorrect;
     public float leftcor;
     public RectTransform[] rt;
-    public Vector3 startrttr;
-    public Quaternion startrtrot;
+    public Vector3[] startrttr;
+    public Quaternion[] startrtrot;
     public struct touchcontrol
     {
         public int phase;
@@ -69,10 +69,20 @@ public class serv : MonoBehaviour {
         Debug.Log("Error connecting with code " + nm.ToString());
     }
     void Start () {
-        starttrans = cube[0].transform.position;
-        startrot = cube[0].transform.rotation;
-        startrttr = rt[0].position;
-        startrtrot = rt[0].rotation;
+        notmoved = new bool[2];
+        lastphase = new int[2];
+        startrot = new Quaternion[2];
+        startrtrot = new Quaternion[2];
+        startrttr = new Vector3[2];
+        starttrans = new Vector3[2];
+        starttrans[0] = cube[0].transform.position;
+        startrot[0] = cube[0].transform.rotation;
+        startrttr[0] = rt[0].position;
+        startrtrot[0]= rt[0].rotation;
+        starttrans[1] = cube[1].transform.position;
+        startrot[1] = cube[1].transform.rotation;
+        startrttr[1] = rt[1].position;
+        startrtrot[1] = rt[1].rotation;
         tess = new float[2];
         tess[0] = -100;
         tess[1] = 100;
@@ -126,8 +136,8 @@ public class serv : MonoBehaviour {
                     }
                     cube[ti].transform.Translate(Vector3.up * -tmp.x * lolnope);
                     cube[ti].transform.Translate(Vector3.right * tmp.z * lolnope);
-                    rt[ti].transform.Translate(Vector3.up * -tmp.x * lolnope*5);
-                    rt[ti].transform.Translate(Vector3.right * tmp.z * lolnope*5);
+                    rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope*5);
+                    rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope*5);
                 }
                 else
                 {
@@ -142,27 +152,29 @@ public class serv : MonoBehaviour {
                     }
                     cube[ti].transform.Translate(Vector3.up * (-tmp.x-upcorrect) * lolnope);
                     cube[ti].transform.Translate(Vector3.right * (-tmp.z - leftcor) * lolnope);
+                    rt[ti].transform.Translate(Vector3.up * (-tmp.x - upcorrect) * lolnope * 5);
+                    rt[ti].transform.Translate(Vector3.right * (-tmp.z - leftcor) * lolnope * 5);
                 }
-                rt[ti].Rotate(Vector3.forward * tmp.y);
+                rt[ti].Rotate(Vector3.forward * -tmp.y);
                 cube[ti].Rotate(Vector3.forward * tmp.y);
                 if (rhm.tc.Length == 1)
                 {
                     if(rhm.tc[0].phase == 1)
                     {
-                        notmoved = false;
+                        notmoved[ti] = false;
                     }else if (rhm.tc[0].phase == 0)
                     {
-                        notmoved = true;
+                        notmoved[ti] = true;
                     }
-                    if(rhm.tc[0].phase == 3 && rhm.tc[0].tc == 2 &&notmoved)
+                    if(rhm.tc[0].phase == 3 && rhm.tc[0].tc == 2 &&notmoved[ti])
                     {
                         Debug.Log("wtf");
-                        cube[ti].transform.position = starttrans;
-                        cube[ti].transform.rotation = startrot;
-                        rt[ti].rotation = startrtrot;
-                        rt[ti].position = startrttr;
+                        cube[ti].transform.position = starttrans[ti];
+                        cube[ti].transform.rotation = startrot[ti];
+                        rt[ti].rotation = startrtrot[ti];
+                        rt[ti].position = startrttr[ti];
                     }
-                    lastphase = rhm.tc[0].phase;
+                    lastphase[ti] = rhm.tc[0].phase;
                 }
             }
         }
