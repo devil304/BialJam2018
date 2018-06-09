@@ -156,8 +156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   tor: 2.5
+  zas: 1
   hymm: []
   target: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!195 &195908230957288324
 NavMeshAgent:
   m_ObjectHideFlags: 1
