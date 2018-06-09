@@ -27,6 +27,8 @@ public class serv : MonoBehaviour {
     public Camera[] cameras;
     public Transform[] cbs;
     public float[] camwych;
+    public Vector2[] startpost, wektorpada;
+    public bool[] archerrr;
     public struct touchcontrol
     {
         public int phase;
@@ -76,6 +78,8 @@ public class serv : MonoBehaviour {
         Debug.Log("Error connecting with code " + nm.ToString());
     }
     void Start () {
+        startpost = new Vector2[2];
+        wektorpada = new Vector2[2];
         camwych = new float[2];
         camwych[0] = 0;
         camwych[1] = 0;
@@ -139,12 +143,31 @@ public class serv : MonoBehaviour {
         {
             tess[1] = tmpx.y;
         }
-        int hymm = rhm.tc.Length;
-        //Debug.Log(tmp+" # "+tmpx + " # " +hymm);
+        Debug.Log(tmp+" # "+tmpx);
         for(int ti=0;ti<ids.Length;ti++)
         {
             if(ids[ti] == netMsg.conn.connectionId)
             {
+                if (rhm.tc.Length == 1)
+                {
+                    switch (rhm.tc[0].phase)
+                    {
+                        case 0:
+                            startpost[ti] = rhm.tc[0].pos;
+                            wektorpada[ti] = new Vector2(0, 0);
+                            break;
+                        case 1:
+                            if ((rhm.tc[0].pos - startpost[ti]).magnitude >= 150)
+                            {
+                                wektorpada[ti] = new Vector2((rhm.tc[0].pos - startpost[ti]).x, (rhm.tc[0].pos - startpost[ti]).y);
+                            }
+                            break;
+                    }
+                    if (rhm.tc[0].phase != 3 && rhm.tc[0].phase != 4 && rhm.tc[0].phase != 0)
+                    {
+                        cbs[ti].transform.Translate(new Vector3(wektorpada[ti].x / 1000, 0, wektorpada[ti].y / 1000));
+                    }
+                }
                 if (ti == 0)
                 {
                     if (tests && tmpx.y < -0.75)
@@ -442,6 +465,9 @@ public class serv : MonoBehaviour {
                         cube[ti].transform.rotation = startrot[ti];
                         rt[ti].localRotation = startrtrot[ti];
                         rt[ti].anchoredPosition = startrttr[ti];
+                    }else if (archerrr[ti]&& rhm.tc[0].phase == 3 && rhm.tc[0].tc == 3 && notmoved[ti])
+                    {
+
                     }
                     lastphase[ti] = rhm.tc[0].phase;
                 }
