@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class grow : MonoBehaviour {
-    public float timer = 0,rate;
-    private float das;
+    private float timer = 0;
+    public float rate;
+    public float das1;
     public float damage;
 	// Use this for initialization
-	public void Start (float dis) {
-        das = dis;
+	public void strat (float da) {
+        das1 = da;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        this.gameObject.GetComponent<Transform>().localScale = new Vector3(1, 1, 1) * timer * rate;
-        if (this.gameObject.GetComponent<Rigidbody>().velocity.z * timer > das)
+        this.gameObject.GetComponent<Transform>().localScale = new Vector3(1, 1, 0) * timer * rate;
+        if (timer > das1*2)
         {
             Destroy(this.gameObject);
         }
@@ -22,7 +23,8 @@ public class grow : MonoBehaviour {
 	}
     private void OnCollisionEnter(Collision other)
     {
-        other.gameObject.SendMessage("GetRekt", damage);
-        Destroy(this.gameObject);
+        if (other.gameObject.tag!="pass") {
+            other.gameObject.SendMessage("GetRekt", damage);
+        }
     }
 }

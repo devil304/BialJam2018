@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class boom : MonoBehaviour {
+    private float timer = 0;
     public Rigidbody falus;
     public bool chydysz;
     public float pren;
-    IEnumerator jep()
+    private float tor1;
+    private void Start()
     {
-        Instantiate(falus);
-        falus.SendMessage("Start", this.gameObject.GetComponentInParent<boombox>().range);
-        falus.gameObject.GetComponent<Rigidbody>().velocity=Vector3.forward*pren;
-        yield return new WaitForSeconds(this.gameObject.GetComponentInParent<boombox>().tor);
+        tor1 = this.gameObject.GetComponentInParent<boombox>().tor;
+    }
+    void Update()
+    {
         if (chydysz)
         {
-            StartCoroutine(jep());
+            if (timer > this.gameObject.GetComponentInParent<boombox>().tor)
+            {
+                Rigidbody asd = Instantiate(falus, this.transform.position, this.transform.rotation);
+                asd.gameObject.SendMessage("strat", tor1);
+                asd.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.forward * pren, ForceMode.Impulse);
+                timer = 0;
+            }
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            timer = 0;
         }
     }
 }

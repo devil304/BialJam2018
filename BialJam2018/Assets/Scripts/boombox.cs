@@ -30,14 +30,15 @@ public class boombox : MonoBehaviour
     void Update()
     {
         RaycastHit rh;
-        Physics.Raycast(this.transform.position, hymm[2].position - this.transform.position, out rh,Vector3.Distance(this.transform.position, hymm[2].position)+1,9);
-        if (rh.transform.gameObject.tag==hymm[2].gameObject.tag&& Vector3.Distance(this.transform.position, hymm[2].position)>range)
+        Physics.Raycast(this.transform.position, target.position - this.transform.position, out rh,Vector3.Distance(this.transform.position, target.position)+1,9);
+        if (rh.transform.gameObject.tag==target.gameObject.tag && Vector3.Distance(this.transform.position, target.position)<range)
         {
-            this.gameObject.GetComponentInChildren<boom>().chydysz = true;
+            this.transform.GetComponentInChildren<boom>().chydysz = true;
+            nma.destination = this.transform.position;
         }
         else
         {
-            this.gameObject.GetComponentInChildren<boom>().chydysz = false;
+            this.transform.GetComponentInChildren<boom>().chydysz = false;
             nma.destination = target.position;
         }
     }

@@ -9,6 +9,7 @@ public class serv : MonoBehaviour {
     public Color test;
     public float[] tess;
     public bool tests = false;
+    public float lolnope;
     public struct touchcontrol
     {
         public int phase;
@@ -107,7 +108,9 @@ public class serv : MonoBehaviour {
                 {
                     tests = true;
                 }
-                cube[ti].Rotate(tmp);
+                cube[ti].transform.Translate(cube[ti].transform.up*tmp.x*lolnope);
+                cube[ti].transform.Translate(cube[ti].transform.right * -tmp.z * lolnope);
+                cube[ti].Rotate(cube[ti].transform.forward * -tmp.y);
             }
         }
     }
