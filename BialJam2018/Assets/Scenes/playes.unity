@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
@@ -469,26 +469,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdec4577a453e44ba18126459e5be18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ids: 9cffffff9cffffff
+  ids: 0100000002000000
   cube:
   - {fileID: 709720410}
   - {fileID: 827384679}
   newcol: {r: 1, g: 0, b: 0, a: 0}
   test: {r: 0.21960786, g: 1, b: 0, a: 0}
-  tess: []
+  tess:
+  - 0.39361572
+  - -0.7831421
   tests: 0
   lolnope: 1
-  lastphase: 0
-  starttrans: {x: 0, y: 0, z: 0}
-  startrot: {x: 0, y: 0, z: 0, w: 0}
-  notmoved: 0
-  upcorrect: 0.0542
-  leftcor: -0.015
+  lastphase: 0000000003000000
+  starttrans:
+  - {x: -3.44, y: 0, z: 0}
+  - {x: 3.06, y: 0, z: 0}
+  startrot:
+  - {x: -1, y: -0, z: -0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 1}
+  notmoved: 0001
+  upcorrect: -100
+  leftcor: -100
   rt:
   - {fileID: 1494653848}
   - {fileID: 79378826}
-  startrttr: {x: 0, y: 0, z: 0}
-  startrtrot: {x: 0, y: 0, z: 0, w: 0}
+  startrttr:
+  - {x: 346, y: 319.5, z: 0}
+  - {x: 846, y: 319.5, z: 0}
+  startrtrot:
+  - {x: -0, y: -0, z: -0, w: 1}
+  - {x: -0, y: -0, z: -0, w: 1}
+  forcorr: -100
+  tmpxx: -100
+  tmpy: -100
+  tmpz: -100
   ip: 0
 --- !u!1 &827384675
 GameObject:

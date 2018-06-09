@@ -25,8 +25,13 @@ public class grow : MonoBehaviour {
 	}
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag!="pass") {
-            other.gameObject.SendMessage("GetRekt", damage);
+        try
+        {
+            other.gameObject.SendMessage("Damage", damage);
+        }
+        catch
+        {
+
         }
     }
 }

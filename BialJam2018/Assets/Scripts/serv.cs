@@ -20,6 +20,8 @@ public class serv : MonoBehaviour {
     public RectTransform[] rt;
     public Vector3[] startrttr;
     public Quaternion[] startrtrot;
+    public float forcorr;
+    public float tmpxx, tmpy, tmpz;
     public struct touchcontrol
     {
         public int phase;
@@ -102,6 +104,13 @@ public class serv : MonoBehaviour {
     }
 	
 	// Update is called once per frame
+    IEnumerator corrpls()
+    {
+        yield return new WaitForSecondsRealtime(3);
+        upcorrect = tmpxx;
+        leftcor = tmpz;
+        forcorr = tmpy;
+    }
 	void Update () {
 		
 	}
@@ -138,25 +147,65 @@ public class serv : MonoBehaviour {
                     cube[ti].transform.Translate(Vector3.right * tmp.z * lolnope);
                     rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope*5);
                     rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope*5);
+                    rt[ti].Rotate(Vector3.forward * -tmp.y);
+                    cube[ti].Rotate(Vector3.forward * tmp.y);
                 }
                 else
                 {
-                    if (tests && tmpx.y < -1)
+                    if (upcorrect == -100 && leftcor == -100 && forcorr == -100)
                     {
-                        test = newcol;
-                        tests = false;
+                        if(tmpxx == -100 && tmpy == -100 && tmpz == -100 && (tmp.x != 0 && tmp.z != 0 && tmp.y != 0))
+                        {
+                            tmpxx = tmp.x;
+                            tmpy = tmp.y;
+                            tmpz = tmp.z;
+                        }
+                        if (tmpxx < 0 && tmp.x<tmpxx && tmp.x!=0)
+                        {
+                            tmpxx = tmp.x;
+                        } else if (tmpxx > 0 && tmp.x>tmpxx && tmp.x != 0) {
+                            tmpxx = tmp.x;
+                        }
+                        if (tmpy < 0 && tmp.y < tmpy && tmp.y != 0)
+                        {
+                            tmpy = tmp.y;
+                        }
+                        else if (tmpy > 0 && tmp.y > tmpy && tmp.y != 0)
+                        {
+                            tmpy = tmp.y;
+                        }
+                        if (tmpz < 0 && tmp.z < tmpz && tmp.z != 0)
+                        {
+                            tmpz = tmp.z;
+                        }
+                        else if (tmpz > 0 && tmp.z > tmpz && tmp.z != 0)
+                        {
+                            tmpz = tmp.z;
+                        }
+                        StartCoroutine(corrpls());
                     }
-                    if (tmpx.y > 1.9)
+                    else
                     {
-                        tests = true;
+                        if (tests && tmpx.y < -1)
+                        {
+                            test = newcol;
+                            tests = false;
+                        }
+                        if (tmpx.y > 1.9)
+                        {
+                            tests = true;
+                        }
+                        float corrx = tmp.x - upcorrect;
+                        float corrz = tmp.z - leftcor;
+                        float corry = tmp.y - forcorr;
+                        cube[ti].transform.Translate(Vector3.up * corrx * lolnope);
+                        cube[ti].transform.Translate(Vector3.right * -corrz * lolnope);
+                        rt[ti].transform.Translate(Vector3.up * corrx * lolnope * 5);
+                        rt[ti].transform.Translate(Vector3.right * -corrz * lolnope * 5);
+                        rt[ti].Rotate(Vector3.forward * -corry);
+                        cube[ti].Rotate(Vector3.forward * -corry);
                     }
-                    cube[ti].transform.Translate(Vector3.up * (-tmp.x-upcorrect) * lolnope);
-                    cube[ti].transform.Translate(Vector3.right * (-tmp.z - leftcor) * lolnope);
-                    rt[ti].transform.Translate(Vector3.up * (-tmp.x - upcorrect) * lolnope * 5);
-                    rt[ti].transform.Translate(Vector3.right * (-tmp.z - leftcor) * lolnope * 5);
                 }
-                rt[ti].Rotate(Vector3.forward * -tmp.y);
-                cube[ti].Rotate(Vector3.forward * tmp.y);
                 if (rhm.tc.Length == 1)
                 {
                     if(rhm.tc[0].phase == 1)

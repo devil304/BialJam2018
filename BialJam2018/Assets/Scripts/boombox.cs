@@ -8,7 +8,7 @@ public class boombox : MonoBehaviour
     public float hp;
     private NavMeshAgent nma;
     private Transform[] hymm;
-    private Transform target;
+    public Transform target;
     public float range,tor,pr,pt,ph;
     bool dod;
     private float hpp,preh;
@@ -79,13 +79,13 @@ public class boombox : MonoBehaviour
     {
         RaycastHit[] rh;
         rh = new RaycastHit[2];
-        Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1], Vector3.Distance(this.transform.position, hymm[1].position)+1, 9);
-        Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0], Vector3.Distance(this.transform.position, hymm[0].position)+1, 9);
-        if((2*Vector3.Distance(this.transform.position,hymm[2].position)+range<Vector3.Distance(this.transform.position,hymm[0].position)+range&& 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position))||(rh[0].transform.tag!="Player"&& rh[1].transform.tag != "Player"))
+        Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1], Vector3.Distance(this.transform.position, hymm[1].position) + 1, 9);
+        Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0], Vector3.Distance(this.transform.position, hymm[0].position) + 1, 9);
+        if ((Vector3.Distance(this.transform.position, hymm[2].position) + range < 2 * Vector3.Distance(this.transform.position, hymm[0].position) + range && Vector3.Distance(this.transform.position, hymm[2].position) < 2 * Vector3.Distance(this.transform.position, hymm[1].position)) || (rh[0].transform.tag != "Player" && rh[1].transform.tag != "Player"))
         {
             target = hymm[2];
         }
-        else if(rh[1].transform.gameObject.tag == hymm[1].gameObject.tag && rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
+        else if (rh[1].transform.gameObject.tag == hymm[1].gameObject.tag && rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
             if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
             {
@@ -96,7 +96,7 @@ public class boombox : MonoBehaviour
                 target = hymm[1];
             }
         }
-        else if(rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
+        else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
         {
             target = hymm[0];
         }
