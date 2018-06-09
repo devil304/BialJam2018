@@ -19,7 +19,6 @@ Material:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
   - TransparentBackface
-  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -108,7 +107,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AORemapMax: 1
+    - _AORemapMax: 0
     - _AORemapMin: 0
     - _ATDistance: 1
     - _AlbedoAffectEmissive: 0
@@ -152,7 +151,7 @@ Material:
     - _EmissiveIntensity: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
-    - _EnableMotionVectorForVertexAnimation: 0
+    - _EnableMotionVectorForVertexAnimation: 1
     - _EnableSpecularOcclusion: 0
     - _EnableWind: 0
     - _EnergyConservingSpecularColor: 1
@@ -185,8 +184,8 @@ Material:
     - _ShiverDirectionality: 0.5
     - _ShiverDrag: 0.2
     - _Smoothness: 0.72
-    - _SmoothnessRemapMax: 1
-    - _SmoothnessRemapMin: -0.00000011920929
+    - _SmoothnessRemapMax: 0.53633523
+    - _SmoothnessRemapMin: 0
     - _SrcBlend: 1
     - _StencilRef: 2
     - _StencilRefMV: 128
