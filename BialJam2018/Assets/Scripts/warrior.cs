@@ -17,7 +17,9 @@ public class warrior : MonoBehaviour {
             hymm[i] = temp[i].transform;
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
+
         StartCoroutine(findAndKill());
+        
     }
 	void Update () {
         nma.destination = target.position;

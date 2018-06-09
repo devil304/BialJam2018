@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 90107677996da1c4d9fbb21434e15ef7
+guid: d0962f34ecdad144191603a95f67d8a4
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -8,8 +8,7 @@ ModelImporter:
     2100000: Wall
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Zamek.bok
-    9500000: //RootNode
+    4300000: Cube.018
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -85,7 +84,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
