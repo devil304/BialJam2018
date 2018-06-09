@@ -8,7 +8,7 @@ public class boombox : MonoBehaviour
     public float hp;
     private NavMeshAgent nma;
     private Transform[] hymm;
-    private Transform target;
+    public Transform target;
     public float range,tor,pr,pt,ph;
     bool dod;
     private float hpp,preh;
