@@ -9,7 +9,7 @@ public class grow : MonoBehaviour {
     public float damage;
 	// Use this for initialization
 	public void strat (boom.lol da) {
-        das1 = da.ran1;
+        das1 = da.tor1;
         das2 = da.pren1;
 	}
 	
@@ -17,7 +17,7 @@ public class grow : MonoBehaviour {
 	void Update () {
         this.gameObject.GetComponent<Transform>().localScale = new Vector3(1, 1, 0) * timer * rate;
         this.transform.Translate(Vector3.forward*das2);
-        if (timer > das1*das2/2)
+        if (timer > das1*2)
         {
             Destroy(this.gameObject);
         }

@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class warrior : MonoBehaviour {
-    public float hp;
+    public float hp,tor;
     protected NavMeshAgent nma;
     public Transform[] hymm;
+    private float hpp, preh;
     public Transform target;
-	void Start () {
+	void Start ()
+    {
+        preh = hp;
+        hpp = 0;
         hymm = new Transform[3];
         nma = this.GetComponent<NavMeshAgent>();
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
@@ -21,10 +25,19 @@ public class warrior : MonoBehaviour {
         StartCoroutine(findAndKill());
         
     }
-	void Update () {
+    public void Kanapka(boombox.boost ho)
+    {
+        tor /= ho.t;
+        hpp = ho.h;
+    }
+    void Update () {
         nma.destination = target.position;
-        
-	}
+        hp += hpp;
+        if (hp > preh)
+        {
+            hp = preh;
+        }
+    }
     IEnumerator findAndKill()
     {
         RaycastHit[] rh;
@@ -54,7 +67,7 @@ public class warrior : MonoBehaviour {
         {
             target = hymm[1];
         }
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(tor);
         StartCoroutine(findAndKill());
     }
 }
