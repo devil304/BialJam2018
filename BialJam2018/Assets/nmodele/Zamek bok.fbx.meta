@@ -1,22 +1,14 @@
 fileFormatVersion: 2
-guid: f001ce15a95965342beec3bdd21569f9
+guid: f3a00045301c08b47944f6c92cb894df
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Camera
-    100002: //RootNode
-    100004: Lamp
-    100006: Sphere
-    400000: Camera
-    400002: //RootNode
-    400004: Lamp
-    400006: Sphere
-    2000000: Camera
-    2100000: Material.001
-    2300000: Sphere
-    3300000: Sphere
-    4300000: Sphere
-    10800000: Lamp
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Wall
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cube
   externalObjects: {}
   materials:
     importMaterials: 1

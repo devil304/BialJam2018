@@ -1,28 +1,14 @@
 fileFormatVersion: 2
-guid: bbe5d6c18bb3b234c846737340d75e2a
+guid: d01cfa3cc01c6df4fb5c1dd10a736ddc
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Camera
-    100002: Lamp
-    100004: Lopata
-    100006: //RootNode
-    100008: Lopata.001
-    400000: Camera
-    400002: Lamp
-    400004: Lopata
-    400006: //RootNode
-    400008: Lopata.001
-    2000000: Camera
-    2100000: Material.001
-    2300000: Lopata
-    2300002: Lopata.001
-    3300000: Lopata
-    3300002: Lopata.001
-    4300000: Lopata.001
-    4300002: Lopata
-    10800000: Lamp
-    2186277476908879412: ImportLogs
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Wall
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cube.005
   externalObjects: {}
   materials:
     importMaterials: 1
