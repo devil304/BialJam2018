@@ -151,36 +151,99 @@ public class serv : MonoBehaviour {
                     {
                         tests = true;
                     }
-                    if (rt[ti].anchoredPosition.x <= -500)
+                    if (rt[ti].anchoredPosition.y < -450)
                     {
-                        if (tmp.x * lolnope > 0)
-                        {
-                            rt[ti].Translate(Vector3.up * tmp.x * lolnope);
-                        }
-                    }
-                    else if (rt[ti].anchoredPosition.x >= 500)
-                    {
-                        if (tmp.x * lolnope < 0)
+                        if (tmp.x * lolnope > 0 && rt[ti].anchoredPosition.y > -500)
                         {
                             rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
+                        }
+                        if (tmp.x * lolnope > 0)
+                        {
+                            cameras[ti].transform.Rotate(Vector3.right * (lolnope * 50));
+                        }else if(rt[ti].anchoredPosition.y <= -500)
+                        {
+                            rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
+                        }
+                        else if (tmp.x * lolnope < 0)
+                        {
+                            cameras[ti].transform.Rotate(Vector3.right * ((lolnope * 50) - (tmp.x)));
+                        }
+                    }
+                    else if (rt[ti].anchoredPosition.y > 450)
+                    {
+                        if (tmp.x * lolnope < 0 && rt[ti].anchoredPosition.y <500)
+                        {
+                            rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
+                        }
+                        if(tmp.x * lolnope < 0)
+                        {
+                            cameras[ti].transform.Rotate(Vector3.right * (-lolnope * 50));
+                        }else if(rt[ti].anchoredPosition.y >= 500)
+                        {
+                            rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
+                        }
+                        else if(tmp.x * lolnope > 0)
+                        {
+                            cameras[ti].transform.Rotate(Vector3.right * ((-lolnope*50) - (tmp.x)));
                         }
                     }
                     else
                     {
                         rt[ti].transform.Translate(Vector3.up * tmp.x * lolnope);
                     }
-                    if (rt[ti].anchoredPosition.y <= -400)
+                    if(rt[ti].anchoredPosition.y >= 600)
                     {
-                        if (-tmp.z * lolnope > 0)
+                        rt[ti].anchoredPosition = new Vector2(rt[ti].anchoredPosition.x,490);
+                    }else if(rt[ti].anchoredPosition.y <= -600)
+                    {
+                        rt[ti].anchoredPosition = new Vector2(rt[ti].anchoredPosition.x, -490);
+                    }
+                    if (rt[ti].anchoredPosition.x >= 500)
+                    {
+                        rt[ti].anchoredPosition = new Vector2(390, rt[ti].anchoredPosition.y);
+                    }
+                    else if (rt[ti].anchoredPosition.x <= -500)
+                    {
+                        rt[ti].anchoredPosition = new Vector2(-390, rt[ti].anchoredPosition.y);
+                    }
+
+
+                    if (rt[ti].anchoredPosition.x < -350)
+                    {
+                        if (-tmp.z * lolnope > 0 && rt[ti].anchoredPosition.x > -400)
                         {
                             rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
                         }
-                    }
-                    else if (rt[ti].anchoredPosition.y >= 400)
-                    {
-                        if (-tmp.z * lolnope < 0)
+                        if (-tmp.z * lolnope > 0)
+                        {
+                            cameras[ti].transform.Rotate(-Vector3.up * (lolnope * 50));
+                        }
+                        else if (rt[ti].anchoredPosition.x <= -400)
                         {
                             rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
+                        }
+                        else if (-tmp.z * lolnope < 0)
+                        {
+                            cameras[ti].transform.Rotate(-Vector3.up * ((lolnope * 50) - (-tmp.z)));
+                        }
+                    }
+                    else if (rt[ti].anchoredPosition.x > 350)
+                    {
+                        if (-tmp.z * lolnope < 0 && rt[ti].anchoredPosition.x < 400)
+                        {
+                            rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
+                        }
+                        if (-tmp.z * lolnope < 0)
+                        {
+                            cameras[ti].transform.Rotate(-Vector3.up * (-lolnope * 50));
+                        }
+                        else if (rt[ti].anchoredPosition.x >= 400)
+                        {
+                            rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
+                        }
+                        else if (-tmp.z * lolnope > 0)
+                        {
+                            cameras[ti].transform.Rotate(-Vector3.up * ((-lolnope * 50) - (-tmp.z)));
                         }
                     }
                     else
