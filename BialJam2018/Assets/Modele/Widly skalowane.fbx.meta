@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 90107677996da1c4d9fbb21434e15ef7
+guid: 51ed7474cbe809347adb843f9ebca64a
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Wall
+    2100000: Material.001
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Zamek.bok
+    4300000: Widly
     9500000: //RootNode
   externalObjects: {}
   materials:
