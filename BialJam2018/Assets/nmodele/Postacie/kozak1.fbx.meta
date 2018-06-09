@@ -89,6 +89,13 @@ ModelImporter:
     100166: Character1.leftHand
     100168: Character1.rightFeet
     100170: Character1.rightHand
+    100172: Character1.chest.001
+    100174: Character1.head.001
+    100176: Character1.leftFeet.001
+    100178: Character1.leftHand.001
+    100180: Character1.rightFeet.001
+    100182: Character1.rightHand.001
+    100184: metarig.Kozak2
     400000: Character1.chest
     400002: chest
     400004: f_index.01.L
@@ -175,6 +182,13 @@ ModelImporter:
     400166: Character1.leftHand
     400168: Character1.rightFeet
     400170: Character1.rightHand
+    400172: Character1.chest.001
+    400174: Character1.head.001
+    400176: Character1.leftFeet.001
+    400178: Character1.leftHand.001
+    400180: Character1.rightFeet.001
+    400182: Character1.rightHand.001
+    400184: metarig.Kozak2
     2100000: MainColor
     4300000: Character1.chest
     4300002: Character1.leftHand
@@ -182,6 +196,12 @@ ModelImporter:
     4300006: Character1.rightFeet
     4300008: Character1.leftFeet
     4300010: Character1.head
+    4300012: Character1.chest.001
+    4300014: Character1.leftFeet.001
+    4300016: Character1.rightFeet.001
+    4300018: Character1.rightHand.001
+    4300020: Character1.leftHand.001
+    4300022: Character1.head.001
     7400000: metarig.003|Run
     7400002: metarig.003|Stand
     7400004: metarig.003|Walk
@@ -197,6 +217,13 @@ ModelImporter:
     13700006: Character1.leftHand
     13700008: Character1.rightFeet
     13700010: Character1.rightHand
+    13700012: Character1.chest.001
+    13700014: Character1.head.001
+    13700016: Character1.leftFeet.001
+    13700018: Character1.leftHand.001
+    13700020: Character1.rightFeet.001
+    13700022: Character1.rightHand.001
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -209,7 +236,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Avatar creation failed:\n\tTransform 'metarig.Kozak2' not found
+      in HumanDescription.\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
