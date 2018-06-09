@@ -760,12 +760,12 @@ ModelImporter:
     - name: f_index.01.L
       parentName: palm.01.L
       position: {x: 6.426126e-10, y: 0.000965535, z: -4.4703483e-10}
-      rotation: {x: 0.03798255, y: -0.040138874, z: 0.04424992, w: 0.9974909}
+      rotation: {x: 0.037982553, y: -0.040138878, z: 0.044249922, w: 0.99749094}
       scale: {x: 1.0000031, y: 0.99999917, z: 1.0000051}
     - name: f_index.02.L
       parentName: f_index.01.L
       position: {x: 3.5390257e-10, y: 0.0006245902, z: -7.4505804e-11}
-      rotation: {x: 0.039695375, y: 0.006542079, z: 0.0015403, w: 0.9991893}
+      rotation: {x: 0.03969537, y: 0.006542079, z: 0.0015402997, w: 0.9991893}
       scale: {x: 1.0000043, y: 1.0000092, z: 1.0000035}
     - name: f_index.03.L
       parentName: f_index.02.L
@@ -820,7 +820,7 @@ ModelImporter:
     - name: f_ring.02.L
       parentName: f_ring.01.L
       position: {x: 3.72529e-10, y: 0.000621493, z: 1.4901161e-10}
-      rotation: {x: 0.03830734, y: 0.020918855, z: 0.010688716, w: 0.9989898}
+      rotation: {x: 0.038307343, y: 0.020918857, z: 0.010688717, w: 0.9989899}
       scale: {x: 1.0000021, y: 0.99999785, z: 1.0000002}
     - name: f_ring.03.L
       parentName: f_ring.02.L
@@ -840,7 +840,7 @@ ModelImporter:
     - name: f_pinky.02.L
       parentName: f_pinky.01.L
       position: {x: -1.862645e-10, y: 0.00038657285, z: -2.9802322e-10}
-      rotation: {x: 0.03869709, y: 0.010750033, z: 0.014399971, w: 0.9990895}
+      rotation: {x: 0.038697086, y: 0.010750033, z: 0.014399969, w: 0.9990895}
       scale: {x: 0.9999998, y: 0.99999607, z: 0.99999946}
     - name: f_pinky.03.L
       parentName: f_pinky.02.L
@@ -855,12 +855,12 @@ ModelImporter:
     - name: upper_arm.R
       parentName: shoulder.R
       position: {x: 0.00007791526, y: 0.0020079091, z: -0.0002038497}
-      rotation: {x: 0.09489364, y: 0.7337859, z: -0.15292133, w: 0.65510947}
+      rotation: {x: 0.09489365, y: 0.733786, z: -0.15292135, w: 0.6551095}
       scale: {x: 1.0000049, y: 1.0000039, z: 0.99999815}
     - name: forearm.R
       parentName: upper_arm.R
       position: {x: -3.7252902e-11, y: 0.0028850983, z: -3.0733643e-10}
-      rotation: {x: -0.032982875, y: 0.005746603, z: -0.01931463, w: -0.99925286}
+      rotation: {x: -0.03298287, y: 0.005746603, z: -0.019314628, w: -0.99925286}
       scale: {x: 1.0000043, y: 0.99999994, z: 1.0000021}
     - name: hand.R
       parentName: forearm.R
@@ -875,7 +875,7 @@ ModelImporter:
     - name: f_index.01.R
       parentName: palm.01.R
       position: {x: -1.3038516e-10, y: 0.00096184877, z: -2.9802322e-10}
-      rotation: {x: 0.038063083, y: 0.039923947, z: -0.04387374, w: 0.99751306}
+      rotation: {x: 0.038063087, y: 0.03992395, z: -0.043873742, w: 0.9975131}
       scale: {x: 1.0000068, y: 1.0000077, z: 1.0000077}
     - name: f_index.02.R
       parentName: f_index.01.R
@@ -895,7 +895,7 @@ ModelImporter:
     - name: thumb.02.R
       parentName: thumb.01.R
       position: {x: 1.3038516e-10, y: 0.00057668093, z: -3.632158e-10}
-      rotation: {x: 0.031532224, y: -0.0061283084, z: -0.014602981, w: 0.99937737}
+      rotation: {x: 0.03153222, y: -0.0061283074, z: -0.014602979, w: 0.99937725}
       scale: {x: 0.9999987, y: 1.000002, z: 1.0000099}
     - name: thumb.03.R
       parentName: thumb.02.R
@@ -930,7 +930,7 @@ ModelImporter:
     - name: f_ring.01.R
       parentName: palm.03.R
       position: {x: -4.9360094e-10, y: 0.00096417096, z: 1.4901161e-10}
-      rotation: {x: 0.054265562, y: -0.028960694, z: 0.063325636, w: 0.99609554}
+      rotation: {x: 0.054265566, y: -0.028960695, z: 0.06332564, w: 0.9960956}
       scale: {x: 1.0000037, y: 1.0000033, z: 1.0000056}
     - name: f_ring.02.R
       parentName: f_ring.01.R
@@ -945,7 +945,7 @@ ModelImporter:
     - name: palm.04.R
       parentName: hand.R
       position: {x: 0.0003335841, y: 0.0004972239, z: -0.00006307417}
-      rotation: {x: 0.0014999154, y: 0.009052067, z: 0.09468309, w: -0.99546516}
+      rotation: {x: 0.0014999155, y: 0.009052067, z: 0.094683096, w: -0.99546516}
       scale: {x: 1.0000007, y: 0.9999967, z: 1.0000005}
     - name: f_pinky.01.R
       parentName: palm.04.R
@@ -965,7 +965,7 @@ ModelImporter:
     - name: thigh.L
       parentName: hips
       position: {x: -0.00098, y: 0.0006980884, z: 0.00028547898}
-      rotation: {x: 0.9857141, y: -3.4825266e-25, z: 6.485236e-24, w: 0.16842718}
+      rotation: {x: 0.98571414, y: -3.4825268e-25, z: 6.4852365e-24, w: 0.1684272}
       scale: {x: 1, y: 1.0000038, z: 1.0000033}
     - name: shin.L
       parentName: thigh.L
@@ -980,7 +980,7 @@ ModelImporter:
     - name: toe.L
       parentName: foot.L
       position: {x: -7.4505804e-11, y: 0.0012924556, z: 0}
-      rotation: {x: -0.0000000120504495, y: 0.96124876, z: -0.27568236, w: 0.000000042017522}
+      rotation: {x: -0.00000001205045, y: 0.9612488, z: -0.2756824, w: 0.000000042017525}
       scale: {x: 1.0000017, y: 1.0000006, z: 1.0000045}
     - name: heel.L
       parentName: shin.L
@@ -995,7 +995,7 @@ ModelImporter:
     - name: thigh.R
       parentName: hips
       position: {x: 0.00098, y: 0.0006980884, z: 0.00028547898}
-      rotation: {x: 0.9857141, y: 5.2663166e-25, z: -2.6119323e-24, w: 0.16842721}
+      rotation: {x: 0.98571414, y: 5.266317e-25, z: -2.6119325e-24, w: 0.16842723}
       scale: {x: 1, y: 1.0000044, z: 1.0000044}
     - name: shin.R
       parentName: thigh.R
@@ -1010,7 +1010,7 @@ ModelImporter:
     - name: toe.R
       parentName: foot.R
       position: {x: -1.3877787e-19, y: 0.0012924556, z: 3.7252902e-11}
-      rotation: {x: -0.000000012050451, y: 0.96124876, z: -0.2756823, w: 0.00000004201753}
+      rotation: {x: -0.000000012050452, y: 0.9612488, z: -0.27568233, w: 0.000000042017533}
       scale: {x: 1.0000026, y: 0.9999991, z: 0.99999607}
     - name: heel.R
       parentName: shin.R
