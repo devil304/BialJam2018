@@ -112,7 +112,7 @@ public class cebula : MonoBehaviour
         {
             // target = hymm[2];
 
-            if (rh[1].transform.gameObject.tag == "Player" && nma.CalculatePath(hymm[1].position, nma.path) && rh[0].transform.gameObject.tag == "Player" && nma.CalculatePath(hymm[1].position, nma.path))
+            if (rh[1].transform.gameObject.tag == "Player"  && rh[0].transform.gameObject.tag == "Player")
             {
                 if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
                 {
@@ -123,7 +123,7 @@ public class cebula : MonoBehaviour
                     target = hymm[1];
                 }
             }
-            else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag && nma.CalculatePath(hymm[1].position, nma.path))
+            else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
             {
                 target = hymm[0];
             }
