@@ -84,6 +84,11 @@ ModelImporter:
     100156: toe.R_end
     100158: upper_arm.L
     100160: upper_arm.R
+    100162: Character1.head
+    100164: Character1.leftFeet
+    100166: Character1.leftHand
+    100168: Character1.rightFeet
+    100170: Character1.rightHand
     400000: Character1.chest
     400002: chest
     400004: f_index.01.L
@@ -165,14 +170,33 @@ ModelImporter:
     400156: toe.R_end
     400158: upper_arm.L
     400160: upper_arm.R
+    400162: Character1.head
+    400164: Character1.leftFeet
+    400166: Character1.leftHand
+    400168: Character1.rightFeet
+    400170: Character1.rightHand
     2100000: MainColor
     4300000: Character1.chest
+    4300002: Character1.leftHand
+    4300004: Character1.rightHand
+    4300006: Character1.rightFeet
+    4300008: Character1.leftFeet
+    4300010: Character1.head
     7400000: metarig.003|Run
     7400002: metarig.003|Stand
     7400004: metarig.003|Walk
     7400006: metarig.003|Walk.001
+    7400008: metarig.003|metarig.004|metarig.003|Run|metarig.003|Run
+    7400010: metarig.003|metarig.004|metarig.003|Stand|metarig.003|Stand
+    7400012: metarig.003|metarig.004|metarig.003|Walk.001|metarig.003|Walk.001
+    7400014: metarig.003|metarig.004|metarig.003|Walk|metarig.003|Walk
     9500000: //RootNode
     13700000: Character1.chest
+    13700002: Character1.head
+    13700004: Character1.leftFeet
+    13700006: Character1.leftHand
+    13700008: Character1.rightFeet
+    13700010: Character1.rightHand
   externalObjects: {}
   materials:
     importMaterials: 1
