@@ -17,8 +17,10 @@ ModelImporter:
     2100000: Material.001
     2300000: Lopata
     2300002: Lopata.001
+    2300004: //RootNode
     3300000: Lopata
     3300002: Lopata.001
+    3300004: //RootNode
     4300000: Lopata.001
     4300002: Lopata
     10800000: Lamp
