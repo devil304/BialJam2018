@@ -14,6 +14,8 @@ public class serv : MonoBehaviour {
     public Vector3 starttrans;
     public Quaternion startrot;
     public bool notmoved;
+    public float upcorrect;
+    public float leftcor;
     public struct touchcontrol
     {
         public int phase;
@@ -105,18 +107,35 @@ public class serv : MonoBehaviour {
         {
             if(ids[ti] == netMsg.conn.connectionId)
             {
-                if (tests&& tmpx.y < -0.75)
+                if (ti == 0)
                 {
-                    test = newcol;
-                    tests = false;
+                    if (tests && tmpx.y < -0.75)
+                    {
+                        test = newcol;
+                        tests = false;
+                    }
+                    if (tmpx.y > 3)
+                    {
+                        tests = true;
+                    }
+                    cube[ti].transform.Translate(Vector3.up * -tmp.x * lolnope);
+                    cube[ti].transform.Translate(Vector3.right * tmp.z * lolnope);
                 }
-                if (tmpx.y>3.5)
+                else
                 {
-                    tests = true;
+                    if (tests && tmpx.y < -1)
+                    {
+                        test = newcol;
+                        tests = false;
+                    }
+                    if (tmpx.y > 1.9)
+                    {
+                        tests = true;
+                    }
+                    cube[ti].transform.Translate(Vector3.up * (-tmp.x-upcorrect) * lolnope);
+                    cube[ti].transform.Translate(Vector3.right * (-tmp.z - leftcor) * lolnope);
                 }
-                cube[ti].transform.Translate(Vector3.up*tmp.x*lolnope);
-                cube[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
-                cube[ti].Rotate(Vector3.forward * -tmp.y);
+                cube[ti].Rotate(Vector3.forward * tmp.y);
                 if (rhm.tc.Length == 1)
                 {
                     if(rhm.tc[0].phase == 1)
