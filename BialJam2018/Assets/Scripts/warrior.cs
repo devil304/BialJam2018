@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class warrior : MonoBehaviour {
-    public float hp,tor,zas;
+    public float hp, tor, zas;
     protected NavMeshAgent nma;
     public Transform[] hymm;
     private float hpp, preh;
@@ -12,14 +12,15 @@ public class warrior : MonoBehaviour {
     public Object anim;
     public GameObject[] gates;
     private int rand;
-	void Start ()
+    public int LoS;
+    void Start()
     {
         preh = hp;
         hpp = 0;
         hymm = new Transform[3];
         nma = this.GetComponent<NavMeshAgent>();
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
-        for(int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
             hymm[i] = temp[i].transform;
         }
@@ -45,19 +46,19 @@ public class warrior : MonoBehaviour {
                 break;
         }
         StartCoroutine(findAndKill());
-        
+
     }
     public void Kanapka(boombox.boost ho)
     {
         tor /= ho.t;
         hpp = ho.h;
     }
-    void Update () {
+    void Update() {
         if (Vector3.Distance(this.transform.position, target.position) < zas)
         {
             this.transform.LookAt(target);
             nma.destination = this.transform.position;
-            
+
 
         }
         else
@@ -76,29 +77,58 @@ public class warrior : MonoBehaviour {
         rh = new RaycastHit[2];
         Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
-        if ((2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[0].position) && 2 * Vector3.Distance(this.transform.position, hymm[2].position) < Vector3.Distance(this.transform.position, hymm[1].position)) || (rh[0].transform.tag != "Player" && rh[1].transform.tag != "Player"))
+        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS || Vector3.Distance(this.transform.position, hymm[1].position) < LoS)
         {
-           // target = hymm[2];
-           
-        }
-        else if (rh[1].transform.gameObject.tag == hymm[1].gameObject.tag && rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
-        {
-            if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
+            // target = hymm[2];
+
+            if (rh[1].transform.gameObject.tag == "Player" && nma.CalculatePath(hymm[1].position, nma.path) && rh[0].transform.gameObject.tag == "Player" && nma.CalculatePath(hymm[1].position, nma.path))
+            {
+                if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
+                {
+                    target = hymm[0];
+                }
+                else
+                {
+                    target = hymm[1];
+                }
+            }
+            else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag && nma.CalculatePath(hymm[1].position, nma.path))
             {
                 target = hymm[0];
             }
-            else
+            else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag && nma.CalculatePath(hymm[1].position, nma.path))
             {
                 target = hymm[1];
             }
         }
-        else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
+        else if (gates[0].GetComponent<gaty>().stan == 0)
         {
-            target = hymm[0];
+            if (gates[1].GetComponent<gaty>().stan == 0)
+            {
+                if (gates.Length == 3)
+                {
+                    if (gates[2].GetComponent<gaty>().stan == 0)
+                    {
+                        target = hymm[2];
+                    }
+                    else
+                    {
+                        target = gates[2].transform;
+                    }
+                }
+                else
+                {
+                    target = hymm[2];
+                }
+            }
+            else
+            {
+                target = gates[1].transform;
+            }
         }
         else
         {
-            target = hymm[1];
+            target = gates[0].transform;
         }
         yield return new WaitForSeconds(tor);
         StartCoroutine(findAndKill());
