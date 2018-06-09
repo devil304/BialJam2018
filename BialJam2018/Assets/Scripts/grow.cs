@@ -8,7 +8,7 @@ public class grow : MonoBehaviour {
     private float das;
     public float damage;
 	// Use this for initialization
-	public void Start (float dis) {
+	public void strat (float dis) {
         das = dis;
 	}
 	

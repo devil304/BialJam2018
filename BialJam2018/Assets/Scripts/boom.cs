@@ -13,7 +13,7 @@ public class boom : MonoBehaviour {
         public IEnumerator jep()
     {
         Rigidbody fas = Instantiate(falus,this.transform.position,this.transform.rotation);
-        fas.SendMessage("Start", this.gameObject.GetComponentInParent<boombox>().range);
+        fas.SendMessage("strat", this.gameObject.GetComponentInParent<boombox>().range);
         fas.gameObject.GetComponent<Rigidbody>().velocity=Vector3.forward*pren;
         yield return new WaitForSeconds(this.gameObject.GetComponentInParent<boombox>().tor);
         if (chydysz)
