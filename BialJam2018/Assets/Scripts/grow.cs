@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class grow : MonoBehaviour {
-    public float timer = 0,rate;
+    private float timer = 0;
+    public float rate;
     private float das;
     public float damage;
 	// Use this for initialization

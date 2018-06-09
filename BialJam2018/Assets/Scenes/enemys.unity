@@ -687,7 +687,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  hymm: []
   range: 5
   tor: 0.5
 --- !u!1001 &1750558588
