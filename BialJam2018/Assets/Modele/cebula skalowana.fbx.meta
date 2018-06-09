@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a5418549c64e7844f814c00a76c567f7
+guid: d4df37b805c087e4abfa781534cddd66
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -16,6 +16,7 @@ ModelImporter:
     2300000: Sphere
     3300000: Sphere
     4300000: Sphere
+    9500000: //RootNode
     10800000: Lamp
   externalObjects: {}
   materials:
@@ -92,7 +93,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

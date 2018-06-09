@@ -9,8 +9,15 @@ public class boombox : MonoBehaviour
     private NavMeshAgent nma;
     private Transform[] hymm;
     private Transform target;
-    public float range;
-    public float tor;
+    public float range,tor,pr,pt,ph;
+    bool dod;
+    private float hpp;
+    private List<GameObject> targets = new List<GameObject>();
+    public struct boost
+    {
+        public float r, t, h;
+    }
+    boost uu;
     // Use this for initialization
     void Start()
     {
@@ -24,6 +31,18 @@ public class boombox : MonoBehaviour
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
         StartCoroutine(findAndKill());
         target = hymm[2];
+        this.gameObject.GetComponent<SphereCollider>().radius = range;
+        uu = new boost();
+        uu.h = ph;
+        uu.r = pr;
+        uu.t = pt;
+        hpp = 0;
+    }
+    public void Kanapka_Z_Dzemem(boombox.boost ho)
+    {
+        range += ho.r;
+        tor /= ho.t;
+        hpp = ho.h;
     }
 
     // Update is called once per frame
@@ -33,18 +52,30 @@ public class boombox : MonoBehaviour
         Physics.Raycast(this.transform.position, target.position - this.transform.position, out rh,Vector3.Distance(this.transform.position, target.position)+1,9);
         if (rh.transform.gameObject.tag==target.gameObject.tag && Vector3.Distance(this.transform.position, target.position)<range)
         {
-            this.transform.GetComponentInChildren<boom>().chydysz = true;
+            this.transform.LookAt(target);
+            foreach (Transform child in transform)
+            {
+                child.GetComponent<boom>().chydysz = true;
+            }
             nma.destination = this.transform.position;
+            
         }
         else
         {
-            this.transform.GetComponentInChildren<boom>().chydysz = false;
+            foreach (Transform child in transform)
+            {
+                child.GetComponent<boom>().chydysz = false;
+            }
             nma.destination = target.position;
+        }
+        hp += hpp;
+        if (hp > 100)
+        {
+            hp = 100;
         }
     }
     IEnumerator findAndKill()
     {
-        Debug.Log("iksde");
         RaycastHit[] rh;
         rh = new RaycastHit[2];
         Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1], Vector3.Distance(this.transform.position, hymm[1].position)+1, 9);
@@ -74,5 +105,27 @@ public class boombox : MonoBehaviour
         }
         yield return new WaitForSeconds(tor);
         StartCoroutine(findAndKill());
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if (!targets.Contains(other.gameObject))
+        {
+            Debug.Log("eeee");
+            targets.Add(other.gameObject);
+            other.SendMessage("Kanapka_Z_Dzemem", uu);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (targets.Contains(other.gameObject))
+        {
+            boost us;
+            us = new boost();
+            us.h = 0;
+            us.t = 0;
+            us.r = 0;
+            targets.Remove(other.gameObject);
+            other.SendMessage("Kanapka_Z_Dzemem", us);
+        }
     }
 }

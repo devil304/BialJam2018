@@ -5,15 +5,23 @@ using UnityEngine;
 public class grow : MonoBehaviour {
     private float timer = 0;
     public float rate;
-    public float das1;
+    public float das1,das2;
     public float damage;
+<<<<<<< HEAD
+	// Use this for initialization
+	public void strat (boom.lol da) {
+        das1 = da.tor1;
+        das2 = da.pren1;
+=======
 	public void strat (float da) {
         das1 = da;
+>>>>>>> 28b0733dcdd24e5128597fa7b067fb10efd99e21
 	}
 	
 	// Update is called once per frame
 	void Update () {
         this.gameObject.GetComponent<Transform>().localScale = new Vector3(1, 1, 0) * timer * rate;
+        this.transform.Translate(Vector3.forward*das2);
         if (timer > das1*2)
         {
             Destroy(this.gameObject);

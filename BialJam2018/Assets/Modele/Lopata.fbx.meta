@@ -1,21 +1,17 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: bbe5d6c18bb3b234c846737340d75e2a
-=======
-guid: fe1dcb4dfea436b47a19b637f88398b1
->>>>>>> b89cd12c180bafc4db271bea289e70f36cbefca8
+guid: 88ead3ec0fc7b9440a4cbaa9099637d4
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Camera
     100002: Lamp
-    100004: Lopata
-    100006: //RootNode
+    100004: //RootNode
+    100006: Lopata
     100008: Lopata.001
     400000: Camera
     400002: Lamp
-    400004: Lopata
-    400006: //RootNode
+    400004: //RootNode
+    400006: Lopata
     400008: Lopata.001
     2000000: Camera
     2100000: Material.001

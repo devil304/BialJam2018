@@ -27,7 +27,6 @@ public class warrior : MonoBehaviour {
 	}
     IEnumerator findAndKill()
     {
-        Debug.Log("iksde");
         RaycastHit[] rh;
         rh = new RaycastHit[2];
         Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
