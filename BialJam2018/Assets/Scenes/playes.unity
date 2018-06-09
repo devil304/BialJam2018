@@ -269,8 +269,10 @@ MonoBehaviour:
   - {fileID: 1312161589}
   - {fileID: 827384679}
   newcol: {r: 1, g: 0, b: 0, a: 0}
-  stock: {r: 0.21807075, g: 1, b: 0, a: 0}
   test: {r: 0.21960786, g: 1, b: 0, a: 0}
+  tess: []
+  tests: 0
+  lolnope: 0.5
   ip: 0
 --- !u!1 &827384675
 GameObject:
