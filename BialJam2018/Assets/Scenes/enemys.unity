@@ -855,9 +855,33 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 1966461524835090, guid: 5a15a3c43fe040b4e8721a7ab7a3830b, type: 2}
       propertyPath: m_Layer
       value: 9
+=======
+    - target: {fileID: 114469890646417136, guid: 5a15a3c43fe040b4e8721a7ab7a3830b,
+        type: 2}
+      propertyPath: falus
+      value: 
+      objectReference: {fileID: 54416995396438534, guid: 9706077d950495942a38ff868c414381,
+        type: 2}
+    - target: {fileID: 114534910485183876, guid: 5a15a3c43fe040b4e8721a7ab7a3830b,
+        type: 2}
+      propertyPath: falus
+      value: 
+      objectReference: {fileID: 54416995396438534, guid: 9706077d950495942a38ff868c414381,
+        type: 2}
+    - target: {fileID: 114469890646417136, guid: 5a15a3c43fe040b4e8721a7ab7a3830b,
+        type: 2}
+      propertyPath: pren
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114534910485183876, guid: 5a15a3c43fe040b4e8721a7ab7a3830b,
+        type: 2}
+      propertyPath: pren
+      value: 5
+>>>>>>> e7fe6b79be140951536f4035fc1406869ff0f10b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a15a3c43fe040b4e8721a7ab7a3830b, type: 2}
@@ -867,6 +891,7 @@ Transform:
   m_PrefabParentObject: {fileID: 4954592951310000, guid: 5a15a3c43fe040b4e8721a7ab7a3830b,
     type: 2}
   m_PrefabInternal: {fileID: 1580544656}
+<<<<<<< HEAD
 --- !u!1 &1716885180
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,10 +954,19 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1735424046
+=======
+--- !u!1 &1580544658 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1579292854239588, guid: 5a15a3c43fe040b4e8721a7ab7a3830b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1580544656}
+--- !u!114 &1580544659
+>>>>>>> e7fe6b79be140951536f4035fc1406869ff0f10b
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1735424044}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -966,6 +1000,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+=======
+  m_GameObject: {fileID: 1580544658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c8fbaae66e06649bd9c28684722121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  hymm: []
+  range: 5
+  tor: 0.5
+>>>>>>> e7fe6b79be140951536f4035fc1406869ff0f10b
 --- !u!1001 &1750558588
 Prefab:
   m_ObjectHideFlags: 0
