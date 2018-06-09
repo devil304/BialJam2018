@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class warrior : MonoBehaviour {
-    public float hp,tor;
+    public float hp,tor,odl;
     protected NavMeshAgent nma;
     public Transform[] hymm;
     private float hpp, preh;

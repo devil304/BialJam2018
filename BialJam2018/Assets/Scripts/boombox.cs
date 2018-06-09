@@ -107,4 +107,22 @@ public class boombox : MonoBehaviour
         yield return new WaitForSeconds(tor);
         StartCoroutine(findAndKill());
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == 9 && !targets.Contains(other.gameObject))
+        {
+            targets.Add(other.gameObject);
+            other.SendMessage("Kanapka", uu);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 9 && targets.Contains(other.gameObject))
+        {
+            boost us;
+            us = new boost();
+            targets.Remove(other.gameObject);
+            other.SendMessage("Kanapka", us);
+        }
+    }
 }
