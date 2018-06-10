@@ -20,7 +20,6 @@ public class cebula : MonoBehaviour
     public float LoS;
     NavMeshPath nmp;
     Animator anim;
-    bool lookat=false;
     int rand;
     private void Awake()
     {
@@ -77,11 +76,10 @@ public class cebula : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        if (lookat)
-        {
+        
             
-            this.transform.LookAt(target);
-        }
+          this.transform.LookAt(target);
+        
     }
     public void Kanapka(boombox.boost ho)
     {
@@ -94,14 +92,13 @@ public class cebula : MonoBehaviour
         RaycastHit rh2;
         Debug.Log("preshot");
         float gaa = Vector3.Distance(this.transform.position, target.position);
-        Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, out rh2,gaa);
-        Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward*gaa, Color.blue, LoS);
+        Physics.Raycast(this.transform.position , target.position - this.transform.position, out rh2);
+        Debug.DrawRay(this.transform.position + new Vector3(0,2,0), target.position - this.transform.position, Color.blue);
         Debug.Log("preshot2");
         if ((rh2.transform.gameObject.tag == "Statute"||rh2.transform.gameObject.tag == "Player" || rh2.transform.gameObject.tag == "gate") && gaa < range)
         {
             Debug.Log("wszedl do shotu");
             anim.SetInteger("controller", 2);
-            lookat = true;
             nma.isStopped=true;
             Rigidbody tmp = Instantiate(rb, transsexualista.position, transsexualista.rotation);
             tmp.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.forward*shootforce,ForceMode.Impulse);
@@ -113,7 +110,7 @@ public class cebula : MonoBehaviour
         {
             Debug.Log("nie wszedl do shotu");
             anim.SetInteger("controller", 1);
-            lookat = false;
+            Debug.Log(target.name);
             nma.CalculatePath(target.position, nmp);
             nma.path = nmp;
             yield return new WaitForSeconds(tor);
