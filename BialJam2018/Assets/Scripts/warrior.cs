@@ -114,10 +114,13 @@ public class warrior : MonoBehaviour {
         {
             hp = preh;
         }
+        if (hp < 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
     public void Damage(float dmg)
     {
-        Debug.Log("i dostał");
         hp -= dmg;
     }
     IEnumerator findAndKill()

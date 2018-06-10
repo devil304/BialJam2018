@@ -17,7 +17,7 @@ public class cebula : MonoBehaviour
     public RaycastHit[] rh;
     public GameObject[] gates;
     public float shootforce;
-    public int LoS;
+    public float LoS;
     NavMeshPath nmp;
     Animator anim;
     bool lookat=false;
@@ -73,6 +73,10 @@ public class cebula : MonoBehaviour
         {
             hp = preh;
         }
+        if (hp < 0)
+        {
+            Destroy(this.gameObject);
+        }
         if (lookat)
         {
             
@@ -89,10 +93,11 @@ public class cebula : MonoBehaviour
     {
         RaycastHit rh2;
         Debug.Log("preshot");
-        Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, out rh2, LoS);
-        Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, Color.blue, LoS);
+        float gaa = Vector3.Distance(this.transform.position, target.position);
+        Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, out rh2,gaa);
+        Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward*gaa, Color.blue, LoS);
         Debug.Log("preshot2");
-        if ((rh2.transform.gameObject.tag == "Statute"||rh2.transform.gameObject.tag == "Player" || rh2.transform.gameObject.tag == "gate") && Vector3.Distance(this.transform.position, target.position) < range)
+        if ((rh2.transform.gameObject.tag == "Statute"||rh2.transform.gameObject.tag == "Player" || rh2.transform.gameObject.tag == "gate") && gaa < range)
         {
             Debug.Log("wszedl do shotu");
             anim.SetInteger("controller", 2);
@@ -118,7 +123,6 @@ public class cebula : MonoBehaviour
     }
     public void Damage(float dmg)
     {
-        Debug.Log("i dostał");
         hp -= dmg;
     }
     IEnumerator findAndKill()
@@ -127,7 +131,7 @@ public class cebula : MonoBehaviour
         rh = new RaycastHit[2];
         Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
-        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS-range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS-range)
+        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS+range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS+range)
         {
             if (rh[1].transform.gameObject.tag == "Player"  && rh[0].transform.gameObject.tag == "Player")
             {
