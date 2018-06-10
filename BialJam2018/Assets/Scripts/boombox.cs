@@ -86,7 +86,8 @@ public class boombox : MonoBehaviour
                 asdas1.GetComponent<boom>().chydysz = true;
             }
             nma.destination = this.transform.position;
-            
+            this.gameObject.GetComponent<Animator>().SetInteger("aminc", 0);
+
         }
         else
         {
@@ -110,11 +111,10 @@ public class boombox : MonoBehaviour
         else if (this.gameObject.GetComponent<Rigidbody>().velocity != new Vector3(0, 0, 0))
         {
             this.gameObject.GetComponent<Animator>().SetInteger("aminc", 1);
-            this.gameObject.GetComponent<NavMeshAgent>().speed = 3.5f;
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 2;
         }
         else
         {
-
             this.gameObject.GetComponent<Animator>().SetInteger("aminc", 0);
         }
     }
@@ -124,8 +124,9 @@ public class boombox : MonoBehaviour
         rh = new RaycastHit[2];
         Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
-        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS - range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS - range)
+        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS + range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS + range)
         {
+            Debug.Log(LoS+range);
             if (rh[1].transform.gameObject.tag == "Player" && rh[0].transform.gameObject.tag == "Player")
             {
                 if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))

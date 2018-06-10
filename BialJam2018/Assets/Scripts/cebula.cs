@@ -111,8 +111,6 @@ public class cebula : MonoBehaviour
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
         if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS-range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS-range)
         {
-            // target = hymm[2];
-
             if (rh[1].transform.gameObject.tag == "Player"  && rh[0].transform.gameObject.tag == "Player")
             {
                 if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
