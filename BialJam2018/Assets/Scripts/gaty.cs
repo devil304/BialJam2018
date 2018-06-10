@@ -20,6 +20,14 @@ public class gaty : MonoBehaviour {
         if (hp < 0)
         {
             stan = 0;
+            
+            foreach(Transform child in this.transform)
+            {
+                if (child.name != "Cube.007")
+                {
+                    GameObject.Destroy(child.gameObject);
+                }
+            }
         }
 	}
 }
