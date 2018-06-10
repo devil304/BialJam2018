@@ -137,6 +137,7 @@ public class boombox : MonoBehaviour
                 this.gameObject.GetComponent<Animator>().SetInteger("aminc", 0);
             }
             lookat = false;
+            nma.isStopped = false;
             nma.CalculatePath(target.position, nmp);
             nma.path = nmp;
             for (int i = 0; i < 2; i++)
