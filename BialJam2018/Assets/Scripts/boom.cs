@@ -6,7 +6,7 @@ public class boom : MonoBehaviour {
     private float timer = 0;
     public Rigidbody falus;
     public bool chydysz;
-    public float pren;
+    public float pren,iss;
     public struct lol
     {
         public float tor1, pren1;
@@ -17,6 +17,7 @@ public class boom : MonoBehaviour {
         hu = new lol();
         hu.tor1 = this.gameObject.GetComponentInParent<schod>().tors;
         hu.pren1 = pren;
+        iss = hu.tor1;
     }
     void Update()
     {

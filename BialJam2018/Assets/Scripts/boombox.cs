@@ -18,6 +18,9 @@ public class boombox : MonoBehaviour
     int rand;
     public GameObject asdas, asdas1;
     List<GameObject> targets = new List<GameObject>();
+    Animator anim;
+    NavMeshPath nmp;
+    bool lookat = false;
     public struct boost
     {
         public float r, t, h;
@@ -43,7 +46,6 @@ public class boombox : MonoBehaviour
         Debug.Log("przed");
         target = hymm[2];
         Debug.Log("po"+hymm[2].name);
-        StartCoroutine(findAndKill());
         
         this.gameObject.GetComponentInChildren<SphereCollider>().radius = range;
         uu = new boost();
@@ -72,6 +74,8 @@ public class boombox : MonoBehaviour
                 break;
         }
         target = gates[0].transform;
+        StartCoroutine(findAndKill());
+        StartCoroutine(shootAndKill());
     }
     public void Kanapka(boombox.boost ho)
     {
@@ -83,47 +87,63 @@ public class boombox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit rh;
-        Physics.Raycast(this.transform.position, target.position - this.transform.position, out rh,Vector3.Distance(this.transform.position, target.position)+1,9);
-        if (rh.transform.gameObject.tag==target.gameObject.tag && Vector3.Distance(this.transform.position, target.position)<range)
-        {
-            this.transform.LookAt(target);
-            for (int i=0;i<2;i++)
-            {
-                asdas.GetComponent<boom>().chydysz = true;
-                asdas1.GetComponent<boom>().chydysz = true;
-            }
-            nma.destination = this.transform.position;
-            this.gameObject.GetComponent<Animator>().SetInteger("aminc", 0);
-
-        }
-        else
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                asdas.GetComponent<boom>().chydysz = false;
-                asdas1.GetComponent<boom>().chydysz = false;
-            }
-            nma.destination = target.position;
-        }
         hp += hpp;
         if (hp > preh)
         {
             hp = preh;
         }
-        if (Vector3.Distance(this.transform.position, target.transform.position) < 4 * range)
+        if (lookat)
         {
-            this.gameObject.GetComponent<Animator>().SetInteger("aminc", 2);
-            this.gameObject.GetComponent<NavMeshAgent>().speed = 6;
+
+            this.transform.LookAt(target);
         }
-        else if (this.gameObject.GetComponent<Rigidbody>().velocity != new Vector3(0, 0, 0))
+    }
+    IEnumerator shootAndKill()
+    {
+        RaycastHit rh2;
+        Debug.Log("preshot");
+        Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, out rh2, LoS);
+        Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, Color.blue, LoS);
+        Debug.Log("preshot2");
+        if ((rh2.transform.gameObject.tag == "Statute" || rh2.transform.gameObject.tag == "Player" || rh2.transform.gameObject.tag == "gate") && Vector3.Distance(this.transform.position, target.position) < range)
         {
-            this.gameObject.GetComponent<Animator>().SetInteger("aminc", 1);
-            this.gameObject.GetComponent<NavMeshAgent>().speed = 2;
+            Debug.Log("wszedl do shotu");
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 6;
+            anim.SetInteger("aminc", 2);
+            lookat = true;
+            nma.isStopped = true;
+            for (int i = 0; i < 2; i++)
+            {
+                asdas.GetComponent<boom>().chydysz = true;
+                asdas1.GetComponent<boom>().chydysz = true;
+            }
+            yield return new WaitForSeconds(tor);
+            StartCoroutine(shootAndKill());
+            Debug.Log("postshot");
         }
         else
         {
-            this.gameObject.GetComponent<Animator>().SetInteger("aminc", 0);
+            Debug.Log("nie wszedl do shotu");
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 2;
+            if (this.gameObject.GetComponent<NavMeshAgent>().pathStatus == NavMeshPathStatus.PathComplete)
+            {
+                this.gameObject.GetComponent<Animator>().SetInteger("aminc", 1);
+            }
+            else
+            {
+                this.gameObject.GetComponent<Animator>().SetInteger("aminc", 0);
+            }
+            lookat = false;
+            nma.CalculatePath(target.position, nmp);
+            nma.path = nmp;
+            for (int i = 0; i < 2; i++)
+            {
+                asdas.GetComponent<boom>().chydysz = false;
+                asdas1.GetComponent<boom>().chydysz = false;
+            }
+            yield return new WaitForSeconds(tor);
+            StartCoroutine(shootAndKill());
+            Debug.Log("postnoshot");
         }
     }
     IEnumerator findAndKill()
@@ -132,10 +152,9 @@ public class boombox : MonoBehaviour
         rh = new RaycastHit[2];
         Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
-        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS + range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS + range)
+        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS - range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS - range)
         {
-            Debug.Log(LoS+range);
-            if (rh[1].transform.gameObject.tag == "Player" && rh[0].transform.gameObject.tag == "Player")
+            if (rh[1].transform.gameObject.tag == "Player" && nma.CalculatePath(hymm[1].position, nma.path) && rh[0].transform.gameObject.tag == "Player" && nma.CalculatePath(hymm[0].position, nma.path))
             {
                 if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
                 {
@@ -146,11 +165,11 @@ public class boombox : MonoBehaviour
                     target = hymm[1];
                 }
             }
-            else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
+            else if (rh[0].transform.gameObject.tag == "Player")
             {
                 target = hymm[0];
             }
-            else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag && nma.CalculatePath(hymm[1].position, nma.path))
+            else if (rh[1].transform.gameObject.tag == "Player")
             {
                 target = hymm[1];
             }
