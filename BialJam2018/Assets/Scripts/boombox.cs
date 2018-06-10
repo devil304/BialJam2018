@@ -23,6 +23,11 @@ public class boombox : MonoBehaviour
         public float r, t, h;
     }
     public boost uu;
+    public void Damage(float dmg)
+    {
+        Debug.Log("i dostał");
+        hp -= dmg;
+    }
     // Use this for initialization
     void Start()
     {
@@ -35,8 +40,11 @@ public class boombox : MonoBehaviour
             hymm[i] = temp[i].transform;
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
-        StartCoroutine(findAndKill());
+        Debug.Log("przed");
         target = hymm[2];
+        Debug.Log("po"+hymm[2].name);
+        StartCoroutine(findAndKill());
+        
         this.gameObject.GetComponentInChildren<SphereCollider>().radius = range;
         uu = new boost();
         uu.h = ph;

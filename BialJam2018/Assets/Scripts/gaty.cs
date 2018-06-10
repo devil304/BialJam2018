@@ -10,13 +10,17 @@ public class gaty : MonoBehaviour {
 	void Start () {
         hpp = hp;
 	}
-    void Damage(float dmg)
+    public void Damage(float dmg)
     {
+        Debug.Log("i dostał");
         hp -= dmg;
     }
-	
-	// Update is called once per frame
-	void Update () {
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("weźkurwadiałaj");
+    }
+    // Update is called once per frame
+    void Update () {
         if (hp < 0)
         {
             stan = 0;
@@ -28,6 +32,7 @@ public class gaty : MonoBehaviour {
                     GameObject.Destroy(child.gameObject);
                 }
             }
+            this.GetComponent<BoxCollider>().enabled = false;
         }
 	}
 }

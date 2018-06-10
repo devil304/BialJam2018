@@ -103,6 +103,11 @@ public class cebula : MonoBehaviour
             Debug.Log("postnoshot");
         } 
     }
+    public void Damage(float dmg)
+    {
+        Debug.Log("i dostał");
+        hp -= dmg;
+    }
     IEnumerator findAndKill()
     {
         RaycastHit[] rh;
@@ -126,7 +131,7 @@ public class cebula : MonoBehaviour
             {
                 target = hymm[0];
             }
-            else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag && nma.CalculatePath(hymm[1].position, nma.path))
+            else if (rh[1].transform.gameObject.tag == hymm[1].gameObject.tag)
             {
                 target = hymm[1];
             }
