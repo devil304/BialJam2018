@@ -99,7 +99,7 @@ public class warrior : MonoBehaviour {
 
         }
         else
-        {
+        {  
             anim.SetInteger("controller", 1);
             if (nma.destination != target.position)
             {
