@@ -31,7 +31,7 @@ public class warrior : MonoBehaviour {
             hymm[i] = temp[i].transform;
         }
         hymm[2] = GameObject.FindGameObjectWithTag("Statute").transform;
-        rand = (int)Random.value * 5;
+        rand = (int)Random.Range((int)1,(int)5);
         switch (rand)
         {
             case 1:
@@ -83,7 +83,7 @@ public class warrior : MonoBehaviour {
                     Debug.Log("pre pcast");
                     Color x;
                     x = Color.blue;
-                    Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, x, LoS);
+                    //Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, x, LoS);
                     Physics.Raycast(this.transform.position+new Vector3(0,2,0), Vector3.forward,out rh2,LoS);
                     if(rh2.transform.gameObject.tag == "Player")
                     {
