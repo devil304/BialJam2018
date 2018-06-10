@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 
 public class boombox : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class boombox : MonoBehaviour
     public GameObject[] gates;
     public int LoS;
     int rand;
+    public GameObject asdas, asdas1;
     List<GameObject> targets = new List<GameObject>();
     public struct boost
     {
@@ -80,7 +82,8 @@ public class boombox : MonoBehaviour
             this.transform.LookAt(target);
             for (int i=0;i<2;i++)
             {
-                this.transform.GetChild(i).GetComponent<boom>().chydysz = true;
+                asdas.GetComponent<boom>().chydysz = true;
+                asdas1.GetComponent<boom>().chydysz = true;
             }
             nma.destination = this.transform.position;
             
@@ -89,7 +92,8 @@ public class boombox : MonoBehaviour
         {
             for (int i = 0; i < 2; i++)
             {
-                this.transform.GetChild(i).GetComponent<boom>().chydysz = false;
+                asdas.GetComponent<boom>().chydysz = false;
+                asdas1.GetComponent<boom>().chydysz = false;
             }
             nma.destination = target.position;
         }
@@ -97,6 +101,21 @@ public class boombox : MonoBehaviour
         if (hp > preh)
         {
             hp = preh;
+        }
+        if (Vector3.Distance(this.transform.position, target.transform.position) < 4 * range)
+        {
+            this.gameObject.GetComponent<Animator>().SetInteger("aminc", 2);
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 6;
+        }
+        else if (this.gameObject.GetComponent<Rigidbody>().velocity != new Vector3(0, 0, 0))
+        {
+            this.gameObject.GetComponent<Animator>().SetInteger("aminc", 1);
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 3.5f;
+        }
+        else
+        {
+
+            this.gameObject.GetComponent<Animator>().SetInteger("aminc", 0);
         }
     }
     IEnumerator findAndKill()
