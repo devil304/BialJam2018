@@ -94,7 +94,6 @@ public class boombox : MonoBehaviour
         }
         if (lookat)
         {
-
             this.transform.LookAt(target);
         }
     }
@@ -152,9 +151,9 @@ public class boombox : MonoBehaviour
         rh = new RaycastHit[2];
         Physics.Raycast(this.transform.position, hymm[1].position - this.transform.position, out rh[1]);
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
-        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS - range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS - range)
+        if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS + range || Vector3.Distance(this.transform.position, hymm[1].position) < LoS + range)
         {
-            if (rh[1].transform.gameObject.tag == "Player" && nma.CalculatePath(hymm[1].position, nma.path) && rh[0].transform.gameObject.tag == "Player" && nma.CalculatePath(hymm[0].position, nma.path))
+            if (rh[1].transform.gameObject.tag == "Player" && rh[0].transform.gameObject.tag == "Player")
             {
                 if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
                 {
@@ -165,11 +164,11 @@ public class boombox : MonoBehaviour
                     target = hymm[1];
                 }
             }
-            else if (rh[0].transform.gameObject.tag == "Player")
+            else if (rh[0].transform.gameObject.tag == hymm[0].gameObject.tag)
             {
                 target = hymm[0];
             }
-            else if (rh[1].transform.gameObject.tag == "Player")
+            else if (rh[1].transform.gameObject.tag == hymm[1].gameObject.tag)
             {
                 target = hymm[1];
             }

@@ -15,12 +15,12 @@ public class boom : MonoBehaviour {
     private void Start()
     {
         hu = new lol();
-        hu.tor1 = this.gameObject.GetComponentInParent<schod>().tors;
         hu.pren1 = pren;
-        iss = hu.tor1;
     }
     void Update()
     {
+        hu.tor1 = this.gameObject.GetComponentInParent<schod>().tors;
+        iss = hu.tor1;
         if (chydysz)
         {
             if (timer > hu.tor1)
