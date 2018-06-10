@@ -101,26 +101,30 @@ public class boombox : MonoBehaviour
     {
         RaycastHit rh2;
         Debug.Log("preshot");
-        Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, out rh2, LoS);
         Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, Color.blue, LoS);
         Debug.Log("preshot2");
-        if ((rh2.transform.gameObject.tag == "Statute" || rh2.transform.gameObject.tag == "Player" || rh2.transform.gameObject.tag == "gate") && Vector3.Distance(this.transform.position, target.position) < range)
+        bool a=true;
+        if (Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, out rh2, LoS))
         {
-            Debug.Log("wszedl do shotu");
-            this.gameObject.GetComponent<NavMeshAgent>().speed = 6;
-            anim.SetInteger("aminc", 2);
-            lookat = true;
-            nma.isStopped = true;
-            for (int i = 0; i < 2; i++)
+            if ((rh2.transform.gameObject.tag == "Statute" || rh2.transform.gameObject.tag == "Player" || rh2.transform.gameObject.tag == "gate") && Vector3.Distance(this.transform.position, target.position) < range)
             {
-                asdas.GetComponent<boom>().chydysz = true;
-                asdas1.GetComponent<boom>().chydysz = true;
+                Debug.Log("wszedl do shotu");
+                this.gameObject.GetComponent<NavMeshAgent>().speed = 6;
+                anim.SetInteger("aminc", 2);
+                lookat = true;
+                nma.isStopped = true;
+                for (int i = 0; i < 2; i++)
+                {
+                    asdas.GetComponent<boom>().chydysz = true;
+                    asdas1.GetComponent<boom>().chydysz = true;
+                }
+                yield return new WaitForSeconds(tor);
+                StartCoroutine(shootAndKill());
+                Debug.Log("postshot");
+                a = false;
             }
-            yield return new WaitForSeconds(tor);
-            StartCoroutine(shootAndKill());
-            Debug.Log("postshot");
         }
-        else
+        if(a)
         {
             Debug.Log("nie wszedl do shotu");
             this.gameObject.GetComponent<NavMeshAgent>().speed = 2;

@@ -109,7 +109,7 @@ MonoBehaviour:
     showEyeDropper: 1
   density:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.142
     min: 0
     max: 1
   mipFogMaxMip:
