@@ -18,6 +18,8 @@ public class cebula : MonoBehaviour
     public GameObject[] gates;
     public float shootforce;
     public int LoS;
+    NavMeshPath nmp;
+    Animator anim;
     bool lookat=false;
     int rand;
     private void Awake()
@@ -27,6 +29,8 @@ public class cebula : MonoBehaviour
     }
     void Start()
     {
+        nmp = new NavMeshPath();
+        anim = this.GetComponent<Animator>();
         preh = hp;
         hpp = 0;
         nma = this.GetComponent<NavMeshAgent>();
@@ -58,6 +62,7 @@ public class cebula : MonoBehaviour
                 break;
         }
         target = gates[0].transform;
+        Debug.Log(gates[0].name);
         StartCoroutine(findAndKill());
         StartCoroutine(shootAndKill());
     }
@@ -70,6 +75,7 @@ public class cebula : MonoBehaviour
         }
         if (lookat)
         {
+            
             this.transform.LookAt(target);
         }
     }
@@ -83,11 +89,15 @@ public class cebula : MonoBehaviour
     {
         RaycastHit rh2;
         Debug.Log("preshot");
-        Physics.Raycast(this.transform.position, target.position - this.transform.position, out rh2, Vector3.Distance(this.transform.position, target.position) + 1, 9);
-        if ((rh2.transform.gameObject.tag == "Statute"||rh2.transform.gameObject.tag == "Player") && Vector3.Distance(this.transform.position, target.position) < range)
+        Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, out rh2, LoS);
+        Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, Color.blue, LoS);
+        Debug.Log("preshot2");
+        if ((rh2.transform.gameObject.tag == "Statute"||rh2.transform.gameObject.tag == "Player" || rh2.transform.gameObject.tag == "gate") && Vector3.Distance(this.transform.position, target.position) < range)
         {
+            Debug.Log("wszedl do shotu");
+            anim.SetInteger("controller", 2);
             lookat = true;
-            nma.destination = this.transform.position;
+            nma.isStopped=true;
             Rigidbody tmp = Instantiate(rb, transsexualista.position, transsexualista.rotation);
             tmp.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.forward*shootforce,ForceMode.Impulse);
             yield return new WaitForSeconds(tor);
@@ -96,8 +106,11 @@ public class cebula : MonoBehaviour
         }
         else
         {
+            Debug.Log("nie wszedl do shotu");
+            anim.SetInteger("controller", 1);
             lookat = false;
-            nma.destination = target.position;
+            nma.CalculatePath(target.position, nmp);
+            nma.path = nmp;
             yield return new WaitForSeconds(tor);
             StartCoroutine(shootAndKill());
             Debug.Log("postnoshot");

@@ -81,6 +81,9 @@ public class warrior : MonoBehaviour {
                 if (prog > 0.53 && prog < 0.55)
                 {
                     Debug.Log("pre pcast");
+                    Color x;
+                    x = Color.blue;
+                    Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, x, LoS);
                     Physics.Raycast(this.transform.position+new Vector3(0,2,0), Vector3.forward,out rh2,LoS);
                     if(rh2.transform.gameObject.tag == "Player")
                     {
@@ -98,11 +101,13 @@ public class warrior : MonoBehaviour {
         else
         {
             anim.SetInteger("controller", 1);
-            
-            bool x = nma.CalculatePath(target.position, nmp);
-            Debug.Log(x);
-            nma.path= nmp;
+            if (nma.destination != target.position)
+            {
+                bool x = nma.CalculatePath(target.position, nmp);
+                Debug.Log(x);
+                nma.path= nmp;
 
+            }
         }
         hp += hpp;
         if (hp > preh)

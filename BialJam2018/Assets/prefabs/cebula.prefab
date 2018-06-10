@@ -230,8 +230,10 @@ MonoBehaviour:
   range: 10
   tor: 1
   rb: {fileID: 54208852358017070, guid: 401850fc24486f649be413deeeb9e641, type: 2}
-  transsexualista: {fileID: 4163434089785144}
+  transsexualista: {fileID: 0}
+  gates: []
   shootforce: 40
+  LoS: 0
 --- !u!195 &195453388632754902
 NavMeshAgent:
   m_ObjectHideFlags: 1
