@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: cbfe36cfddfde964d9dfce63a355d5dd
+  - enabled: 1
+    path: Assets/Scenes/plansza.unity
+    guid: 0e4629dc34635fe4f9bb4d4fd06b9ddc
   m_configObjects: {}

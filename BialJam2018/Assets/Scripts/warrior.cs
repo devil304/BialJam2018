@@ -15,7 +15,7 @@ public class warrior : MonoBehaviour {
     int rand;
     public int DD;
     public RaycastHit rh2;
-    GameObject[] gates;
+    private GameObject[] gates;
     NavMeshPath nmp;
     void Start ()
     {
@@ -47,7 +47,19 @@ public class warrior : MonoBehaviour {
                 gates[1] = GameObject.Find("gate5");
                 gates[2] = GameObject.Find("gate4");
                 break;
-            default:
+            case 3:
+                Debug.Log("3-5");
+                gates = new GameObject[2];
+                gates[0] = GameObject.Find("gate3");
+                gates[1] = GameObject.Find("gate4");
+                break;
+            case 4:
+                Debug.Log("3-5");
+                gates = new GameObject[2];
+                gates[0] = GameObject.Find("gate3");
+                gates[1] = GameObject.Find("gate4");
+                break;
+            case 5:
                 Debug.Log("3-5");
                 gates = new GameObject[2];
                 gates[0] = GameObject.Find("gate3");
@@ -81,8 +93,8 @@ public class warrior : MonoBehaviour {
                 if (prog > 0.53 && prog < 0.55)
                 {
                     Debug.Log("pre pcast");
-                    Color x;
-                    x = Color.blue;
+                   // Color x;
+                    //x = Color.blue;
                     //Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.forward, x, LoS);
                     Physics.Raycast(this.transform.position+new Vector3(0,2,0), Vector3.forward,out rh2,LoS);
                     if(rh2.transform.gameObject.tag == "Player")

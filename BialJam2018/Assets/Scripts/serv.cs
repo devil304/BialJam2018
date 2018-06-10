@@ -111,7 +111,7 @@ public class serv : MonoBehaviour {
         startrtrot[1] = rt[1].localRotation;
         tess = new float[2];
         tess[0] = -100;
-        tess[1] = 100;
+        tess[1] = -100;
         DontDestroyOnLoad(this.gameObject);
         if (ip != "0")
         {
@@ -188,8 +188,8 @@ public class serv : MonoBehaviour {
     {
         for (int ti = 0; ti < 2; ti++)
         {
-            //cube[ti].transform.Rotate(Vector3.right * (lolnope * 60)* (trranstest[ti].y * 2));
-            cube[ti].transform.Translate(trranstest[ti]*2);
+            //cube[ti].transform.Rotate(Vector3.right * (lolnope * 80)* (trranstest[ti].y * 2));
+            cube[ti].transform.Translate(trranstest[ti]*1.5f);
         }
     }
     public void messrecived(NetworkMessage netMsg)
@@ -263,8 +263,8 @@ public class serv : MonoBehaviour {
                         }
                         if (tmp.x * lolnope > 0 && camwych[ti] > -40)
                         {
-                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (lolnope * 60));
-                            camwych[ti] -= (lolnope * 60);
+                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (lolnope * 80));
+                            camwych[ti] -= (lolnope * 80);
                         }
                         else if(rt[ti].anchoredPosition.y <= -500)
                         {
@@ -272,8 +272,8 @@ public class serv : MonoBehaviour {
                         }
                         else if (tmp.x * lolnope < 0 && camwych[ti] > -40)
                         {
-                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((lolnope * 60) - (tmp.x)));
-                            camwych[ti] -= (lolnope * 60) - (tmp.x);
+                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((lolnope * 80) - (tmp.x)));
+                            camwych[ti] -= (lolnope * 80) - (tmp.x);
                         }
                     }
                     else if (rt[ti].anchoredPosition.y > 450)
@@ -284,8 +284,8 @@ public class serv : MonoBehaviour {
                         }
                         if(tmp.x * lolnope < 0 && camwych[ti] < 50)
                         {
-                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (-lolnope * 60));
-                            camwych[ti] -= (-lolnope * 60);
+                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (-lolnope * 80));
+                            camwych[ti] -= (-lolnope * 80);
                         }
                         else if(rt[ti].anchoredPosition.y >= 500)
                         {
@@ -294,7 +294,7 @@ public class serv : MonoBehaviour {
                         else if(tmp.x * lolnope > 0 && camwych[ti] < 50)
                         {
                             cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((-lolnope*60) - (tmp.x)));
-                            camwych[ti] -= (-lolnope * 60) - (tmp.x);
+                            camwych[ti] -= (-lolnope * 80) - (tmp.x);
                         }
                     }
                     else
@@ -326,7 +326,7 @@ public class serv : MonoBehaviour {
                         }
                         if (-tmp.z * lolnope > 0)
                         {
-                            cbs[ti].transform.Rotate(-Vector3.up * (lolnope * 60));
+                            cbs[ti].transform.Rotate(-Vector3.up * (lolnope * 80));
                         }
                         else if (rt[ti].anchoredPosition.x <= -400)
                         {
@@ -334,7 +334,7 @@ public class serv : MonoBehaviour {
                         }
                         else if (-tmp.z * lolnope < 0)
                         {
-                            cbs[ti].transform.Rotate(-Vector3.up * ((lolnope * 60) - (-tmp.z)));
+                            cbs[ti].transform.Rotate(-Vector3.up * ((lolnope * 80) - (-tmp.z)));
                         }
                     }
                     else if (rt[ti].anchoredPosition.x > 350)
@@ -345,7 +345,7 @@ public class serv : MonoBehaviour {
                         }
                         if (-tmp.z * lolnope < 0)
                         {
-                            cbs[ti].transform.Rotate(-Vector3.up * (-lolnope * 60));
+                            cbs[ti].transform.Rotate(-Vector3.up * (-lolnope * 80));
                         }
                         else if (rt[ti].anchoredPosition.x >= 400)
                         {
@@ -353,7 +353,7 @@ public class serv : MonoBehaviour {
                         }
                         else if (-tmp.z * lolnope > 0)
                         {
-                            cbs[ti].transform.Rotate(-Vector3.up * ((-lolnope * 60) - (-tmp.z)));
+                            cbs[ti].transform.Rotate(-Vector3.up * ((-lolnope * 80) - (-tmp.z)));
                         }
                     }
                     else
@@ -413,8 +413,6 @@ public class serv : MonoBehaviour {
                         float corrx = tmp.x - upcorrect;
                         float corrz = tmp.z - leftcor;
                         float corry = tmp.y - forcorr;
-                        cube[ti].transform.Translate(Vector3.up * corrx * lolnope);
-                        cube[ti].transform.Translate(Vector3.right * -corrz * lolnope);
                         if (rt[ti].anchoredPosition.y < -450)
                         {
                             if (corrx * lolnope > 0 && rt[ti].anchoredPosition.y > -500)
@@ -423,8 +421,8 @@ public class serv : MonoBehaviour {
                             }
                             if (corrx * lolnope > 0 && camwych[ti] > -40)
                             {
-                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (lolnope * 60));
-                                camwych[ti] -= (lolnope * 60);
+                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (lolnope * 80));
+                                camwych[ti] -= (lolnope * 80);
                             }
                             else if (rt[ti].anchoredPosition.y <= -500)
                             {
@@ -432,8 +430,8 @@ public class serv : MonoBehaviour {
                             }
                             else if (corrx * lolnope < 0 && camwych[ti]> -40)
                             {
-                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((lolnope * 60) - (corrx)));
-                                camwych[ti] -= ((lolnope * 60) - (corrx));
+                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((lolnope * 80) - (corrx)));
+                                camwych[ti] -= ((lolnope * 80) - (corrx));
                             }
                         }
                         else if (rt[ti].anchoredPosition.y > 450)
@@ -444,8 +442,8 @@ public class serv : MonoBehaviour {
                             }
                             if (corrx * lolnope < 0 && camwych[ti] < 50)
                             {
-                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (-lolnope * 60));
-                                camwych[ti] -= (-lolnope * 60);
+                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (-lolnope * 80));
+                                camwych[ti] -= (-lolnope * 80);
                             }
                             else if (rt[ti].anchoredPosition.y >= 500)
                             {
@@ -453,8 +451,8 @@ public class serv : MonoBehaviour {
                             }
                             else if (corrx * lolnope > 0 && camwych[ti] < 50)
                             {
-                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((-lolnope * 60) - (corrx)));
-                                camwych[ti] -= (-lolnope * 60) - (corrx);
+                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((-lolnope * 80) - (corrx)));
+                                camwych[ti] -= (-lolnope * 80) - (corrx);
                             }
                         }
                         else
@@ -487,7 +485,7 @@ public class serv : MonoBehaviour {
                             }
                             if (-corrz * lolnope > 0)
                             {
-                                cbs[ti].transform.Rotate(-Vector3.up * (lolnope * 60));
+                                cbs[ti].transform.Rotate(-Vector3.up * (lolnope * 80));
                             }
                             else if (rt[ti].anchoredPosition.x <= -400)
                             {
@@ -495,7 +493,7 @@ public class serv : MonoBehaviour {
                             }
                             else if (-corrz * lolnope < 0)
                             {
-                                cbs[ti].transform.Rotate(-Vector3.up * ((lolnope * 60) - (-corrz)));
+                                cbs[ti].transform.Rotate(-Vector3.up * ((lolnope * 80) - (-corrz)));
                             }
                         }
                         else if (rt[ti].anchoredPosition.x > 350)
@@ -506,7 +504,7 @@ public class serv : MonoBehaviour {
                             }
                             if (-corrz * lolnope < 0)
                             {
-                                cbs[ti].transform.Rotate(-Vector3.up * (-lolnope * 60));
+                                cbs[ti].transform.Rotate(-Vector3.up * (-lolnope * 80));
                             }
                             else if (rt[ti].anchoredPosition.x >= 400)
                             {
@@ -514,17 +512,17 @@ public class serv : MonoBehaviour {
                             }
                             else if (-corrz * lolnope > 0)
                             {
-                                cbs[ti].transform.Rotate(-Vector3.up * ((-lolnope * 60) - (-corrz)));
+                                cbs[ti].transform.Rotate(-Vector3.up * ((-lolnope * 80) - (-corrz)));
                             }
                         }
                         else
                         {
                             rt[ti].transform.Translate(Vector3.right * -corrz * lolnope);
                         }
-                        trranstest[ti] = Vector3.forward * -corrz * lolnope;
-                        trranstest[ti] += Vector3.right * -corrz * lolnope;
+                        trranstest[ti] = Vector3.forward * corrx * lolnope;
+                        trranstest[ti] += Vector3.right * corrz * lolnope;
                         rt[ti].Rotate(Vector3.forward * -corry);
-                        cube[ti].Rotate(Vector3.forward * -corry);
+                        cube[ti].Rotate(Vector3.up * -corry);
                     }
                 }
                 if (rhm.tc.Length == 1)
