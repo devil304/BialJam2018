@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class serv : MonoBehaviour {
     public int[] ids;
@@ -33,6 +34,8 @@ public class serv : MonoBehaviour {
     public Transform trst;
     public Vector3[] trranstest;
     public Transform[] handstart;
+    public CharacterController[] cc;
+    public Animator[] animki;
     public struct touchcontrol
     {
         public int phase;
@@ -180,12 +183,33 @@ public class serv : MonoBehaviour {
                     {
                         if (!archerrr[ti])
                         {
-                            cbs[ti].transform.Translate(new Vector3(wektorpada[ti].x / 1000, 0, wektorpada[ti].y / 1000));
+                            if (cc[ti].isGrounded)
+                            {
+                                cc[ti].Move(new Vector3(-wektorpada[ti].x / 5000, 0, -wektorpada[ti].y / 5000));
+                                if (wektorpada[ti].magnitude > 150 && wektorpada[ti].magnitude < 350)
+                                {
+                                    animki[ti].SetInteger("animka", 1);
+                                }
+                                else if (wektorpada[ti].magnitude >= 350)
+                                {
+                                    animki[ti].SetInteger("animka", 2);
+                                }
+                            }
+                            else
+                            {
+                                cc[ti].Move(Vector3.up * -10);
+                            }
+                            //cbs[ti].transform.Translate(new Vector3(wektorpada[ti].x / 1000, 0, wektorpada[ti].y / 1000));
                         }
                         else
                         {
+                            animki[ti].SetInteger("animka", 0);
                             dcien = wektorpada[ti].magnitude;
                         }
+                    }
+                    else
+                    {
+                        animki[ti].SetInteger("animka", 0);
                     }
                 }
                 if (ti == 0)
