@@ -15,14 +15,14 @@ public class boom : MonoBehaviour {
     private void Start()
     {
         hu = new lol();
-        hu.tor1 = this.gameObject.GetComponentInParent<boombox>().tor;
+        hu.tor1 = this.gameObject.GetComponentInParent<schod>().tors;
         hu.pren1 = pren;
     }
     void Update()
     {
         if (chydysz)
         {
-            if (timer > this.gameObject.GetComponentInParent<boombox>().tor)
+            if (timer > hu.tor1)
             {
                 Rigidbody asd = Instantiate(falus, this.transform.position, this.transform.rotation);
                 asd.transform.LookAt(this.gameObject.GetComponentInParent<boombox>().target,Vector3.up);
