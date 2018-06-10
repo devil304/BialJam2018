@@ -7,14 +7,10 @@ using UnityEngine.Animations;
 public class serv : MonoBehaviour {
     public int[] ids;
     public Transform[] cube;
-    public Color newcol;
-    public Color test;
     public float[] tess;
     public bool tests = false;
     public float lolnope;
     public int[] lastphase;
-    public Vector3[] starttrans;
-    public Quaternion[] startrot;
     public bool[] notmoved;
     public float upcorrect;
     public float leftcor;
@@ -36,6 +32,11 @@ public class serv : MonoBehaviour {
     public Transform[] handstart;
     public CharacterController[] cc;
     public Animator[] animki;
+    public Vector3 movedir;
+    public int tix;
+    public bool[] dzig;
+    public float maxwys;
+    public Vector3[] controll;
     public struct touchcontrol
     {
         public int phase;
@@ -85,6 +86,9 @@ public class serv : MonoBehaviour {
         Debug.Log("Error connecting with code " + nm.ToString());
     }
     void Start () {
+        dzig = new bool[2];
+        controll = new Vector3[2];
+        movedir = new Vector3(0, 0, 0);
         trranstest = new Vector3[2];
         archerrr = new bool[2];
         startpost = new Vector2[2];
@@ -99,16 +103,10 @@ public class serv : MonoBehaviour {
         }
         notmoved = new bool[2];
         lastphase = new int[2];
-        startrot = new Quaternion[2];
         startrtrot = new Quaternion[2];
         startrttr = new Vector2[2];
-        starttrans = new Vector3[2];
-        starttrans[0] = cube[0].transform.position;
-        startrot[0] = cube[0].transform.rotation;
         startrttr[0] = rt[0].anchoredPosition;
         startrtrot[0]= rt[0].localRotation;
-        starttrans[1] = cube[1].transform.position;
-        startrot[1] = cube[1].transform.rotation;
         startrttr[1] = rt[1].anchoredPosition;
         startrtrot[1] = rt[1].localRotation;
         tess = new float[2];
@@ -138,12 +136,59 @@ public class serv : MonoBehaviour {
         forcorr = tmpy;
     }
 	void Update () {
-		
-	}
+        /*if(dzig[tix]&&cube[tix].transform.localPosition.y < maxwys)
+        {
+            cube[tix].transform.Translate(Vector3.forward);
+        }
+        else if(cube[tix].transform.localPosition.y >= 1.3f)
+        {
+            cube[tix].transform.Translate(-Vector3.forward);
+            dzig[tix] = false;
+        }*/
+        //Debug.Log(cube[tix].transform.localPosition.y);
+        if (cc[tix].isGrounded)
+        {
+                controll[tix] = cc[tix].transform.TransformDirection(new Vector3(wektorpada[tix].x / 40, 0, wektorpada[tix].y / 40));
+            cc[tix].Move(controll[tix] * Time.deltaTime);
+            if (wektorpada[tix].magnitude > 150 && wektorpada[tix].magnitude < 350)
+            {
+                //Debug.Log(wektorpada[ti].y + "#" + wektorpada[ti].x);
+                if (wektorpada[tix].y > 150)
+                {
+                    animki[tix].SetInteger("animka", 3);
+                }
+                else
+                {
+                    animki[tix].SetInteger("animka", 1);
+                }
+
+            }
+            else if (wektorpada[tix].magnitude >= 350)
+            {
+                if (wektorpada[tix].y > 150)
+                {
+                    animki[tix].SetInteger("animka", 4);
+                }
+                else
+                {
+                    animki[tix].SetInteger("animka", 2);
+                }
+            }
+        }
+        else
+        {
+            cc[tix].Move(Vector3.up * -10 * Time.deltaTime);
+        }
+    }
+    private void FixedUpdate()
+    {
+        
+    }
     void LateUpdate()
     {
         for (int ti = 0; ti < 2; ti++)
         {
+            //cube[ti].transform.Rotate(Vector3.right * (lolnope * 60)* (trranstest[ti].y * 2));
             cube[ti].transform.Translate(trranstest[ti]*2);
         }
     }
@@ -159,7 +204,7 @@ public class serv : MonoBehaviour {
         {
             tess[1] = tmpx.y;
         }
-        Debug.Log(tmp+" # "+tmpx);
+        //Debug.Log(tmp+" # "+tmpx);
         for(int ti=0;ti<ids.Length;ti++)
         {
             if(ids[ti] == netMsg.conn.connectionId)
@@ -183,23 +228,8 @@ public class serv : MonoBehaviour {
                     {
                         if (!archerrr[ti])
                         {
-                            if (cc[ti].isGrounded)
-                            {
-                                cc[ti].Move(new Vector3(-wektorpada[ti].x / 5000, 0, -wektorpada[ti].y / 5000));
-                                if (wektorpada[ti].magnitude > 150 && wektorpada[ti].magnitude < 350)
-                                {
-                                    animki[ti].SetInteger("animka", 1);
-                                }
-                                else if (wektorpada[ti].magnitude >= 350)
-                                {
-                                    animki[ti].SetInteger("animka", 2);
-                                }
-                            }
-                            else
-                            {
-                                cc[ti].Move(Vector3.up * -10);
-                            }
-                            //cbs[ti].transform.Translate(new Vector3(wektorpada[ti].x / 1000, 0, wektorpada[ti].y / 1000));
+                            Debug.Log("nodziała");
+                            tix = ti;
                         }
                         else
                         {
@@ -207,16 +237,18 @@ public class serv : MonoBehaviour {
                             dcien = wektorpada[ti].magnitude;
                         }
                     }
-                    else
+                    else if(rhm.tc[0].phase == 3 || rhm.tc[0].phase == 4)
                     {
+                        wektorpada[ti] = new Vector2(0, 0);
                         animki[ti].SetInteger("animka", 0);
                     }
                 }
+                //Debug.Log(wektorpada[ti]);
                 if (ti == 0)
                 {
                     if (tests && tmpx.y < -0.75)
                     {
-                        test = newcol;
+                        dzig[ti] = true;
                         tests = false;
                     }
                     if (tmpx.y > 3)
@@ -371,7 +403,7 @@ public class serv : MonoBehaviour {
                     {
                         if (tests && tmpx.y < -1)
                         {
-                            test = newcol;
+                            dzig[ti] = true;
                             tests = false;
                         }
                         if (tmpx.y > 1.9)
@@ -512,7 +544,7 @@ public class serv : MonoBehaviour {
                         cube[ti].transform.position = handstart[ti].position;
                         handstart[ti].parent = tmpp;
                         rt[ti].anchoredPosition = startrttr[ti];
-                        cube[ti].transform.rotation = startrot[ti];
+                        cube[ti].transform.rotation = handstart[ti].rotation;
                         rt[ti].localRotation = startrtrot[ti];
                         if (archerrr[ti] && tmpx.x >= 0.8)
                         {

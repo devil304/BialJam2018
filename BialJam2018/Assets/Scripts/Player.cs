@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
 	void Update () {
         if (hp < 0)
         {
-            Destroy(this.gameObject);
+            
         }
 	}
 }

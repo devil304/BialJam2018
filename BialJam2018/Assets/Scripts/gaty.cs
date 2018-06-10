@@ -15,10 +15,10 @@ public class gaty : MonoBehaviour {
         Debug.Log("i dostał");
         hp -= dmg;
     }
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         Debug.Log("weźkurwadiałaj");
-    }
+    }*/
     // Update is called once per frame
     void Update () {
         if (hp < 0)
