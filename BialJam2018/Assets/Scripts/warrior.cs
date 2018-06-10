@@ -131,7 +131,7 @@ public class warrior : MonoBehaviour {
         Physics.Raycast(this.transform.position, hymm[0].position - this.transform.position, out rh[0]);
         if (Vector3.Distance(this.transform.position, hymm[0].position) < LoS  || Vector3.Distance(this.transform.position, hymm[1].position) < LoS )
         {
-            if (rh[1].transform.gameObject.tag == "Player"&&nma.CalculatePath(hymm[1].position,nma.path) && rh[0].transform.gameObject.tag == "Player"&& nma.CalculatePath(hymm[0].position, nma.path))
+            if (rh[1].transform.gameObject.tag == "Player"&&nma.CalculatePath(hymm[1].position,nmp) && rh[0].transform.gameObject.tag == "Player"&& nma.CalculatePath(hymm[0].position, nmp))
             {
                 if (Vector3.Distance(this.transform.position, hymm[1].position) > Vector3.Distance(this.transform.position, hymm[0].position))
                 {
