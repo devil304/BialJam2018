@@ -27,6 +27,10 @@ public class serv : MonoBehaviour {
     public Camera[] cameras;
     public Transform[] cbs;
     public float[] camwych;
+    public Vector2[] startpost, wektorpada;
+    public bool[] archerrr;
+    public float dcien;
+    public Transform trst;
     public struct touchcontrol
     {
         public int phase;
@@ -76,6 +80,9 @@ public class serv : MonoBehaviour {
         Debug.Log("Error connecting with code " + nm.ToString());
     }
     void Start () {
+        archerrr = new bool[2];
+        startpost = new Vector2[2];
+        wektorpada = new Vector2[2];
         camwych = new float[2];
         camwych[0] = 0;
         camwych[1] = 0;
@@ -127,6 +134,10 @@ public class serv : MonoBehaviour {
 	void Update () {
 		
 	}
+    void LateUpdate()
+    {
+        trst.position = new Vector3(100,100,100);
+    }
     public void messrecived(NetworkMessage netMsg)
     {
         RegisterHostMessage rhm = netMsg.ReadMessage<RegisterHostMessage>();
@@ -139,12 +150,38 @@ public class serv : MonoBehaviour {
         {
             tess[1] = tmpx.y;
         }
-        int hymm = rhm.tc.Length;
-        //Debug.Log(tmp+" # "+tmpx + " # " +hymm);
+        Debug.Log(tmp+" # "+tmpx);
         for(int ti=0;ti<ids.Length;ti++)
         {
             if(ids[ti] == netMsg.conn.connectionId)
             {
+                if (rhm.tc.Length == 1)
+                {
+                    switch (rhm.tc[0].phase)
+                    {
+                        case 0:
+                            startpost[ti] = rhm.tc[0].pos;
+                            wektorpada[ti] = new Vector2(0, 0);
+                            break;
+                        case 1:
+                            if ((rhm.tc[0].pos - startpost[ti]).magnitude >= 150)
+                            {
+                                wektorpada[ti] = new Vector2((rhm.tc[0].pos - startpost[ti]).x, (rhm.tc[0].pos - startpost[ti]).y);
+                            }
+                            break;
+                    }
+                    if (rhm.tc[0].phase != 3 && rhm.tc[0].phase != 4 && rhm.tc[0].phase != 0)
+                    {
+                        if (!archerrr[ti])
+                        {
+                            cbs[ti].transform.Translate(new Vector3(wektorpada[ti].x / 1000, 0, wektorpada[ti].y / 1000));
+                        }
+                        else
+                        {
+                            dcien = wektorpada[ti].magnitude;
+                        }
+                    }
+                }
                 if (ti == 0)
                 {
                     if (tests && tmpx.y < -0.75)
@@ -164,7 +201,7 @@ public class serv : MonoBehaviour {
                         }
                         if (tmp.x * lolnope > 0 && camwych[ti] > -40)
                         {
-                            cameras[ti].transform.Rotate(Vector3.right * (lolnope * 60));
+                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (lolnope * 60));
                             camwych[ti] -= (lolnope * 60);
                         }
                         else if(rt[ti].anchoredPosition.y <= -500)
@@ -173,7 +210,7 @@ public class serv : MonoBehaviour {
                         }
                         else if (tmp.x * lolnope < 0 && camwych[ti] > -40)
                         {
-                            cameras[ti].transform.Rotate(Vector3.right * ((lolnope * 60) - (tmp.x)));
+                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((lolnope * 60) - (tmp.x)));
                             camwych[ti] -= (lolnope * 60) - (tmp.x);
                         }
                     }
@@ -185,7 +222,7 @@ public class serv : MonoBehaviour {
                         }
                         if(tmp.x * lolnope < 0 && camwych[ti] < 50)
                         {
-                            cameras[ti].transform.Rotate(Vector3.right * (-lolnope * 60));
+                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (-lolnope * 60));
                             camwych[ti] -= (-lolnope * 60);
                         }
                         else if(rt[ti].anchoredPosition.y >= 500)
@@ -194,7 +231,7 @@ public class serv : MonoBehaviour {
                         }
                         else if(tmp.x * lolnope > 0 && camwych[ti] < 50)
                         {
-                            cameras[ti].transform.Rotate(Vector3.right * ((-lolnope*60) - (tmp.x)));
+                            cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((-lolnope*60) - (tmp.x)));
                             camwych[ti] -= (-lolnope * 60) - (tmp.x);
                         }
                     }
@@ -324,7 +361,7 @@ public class serv : MonoBehaviour {
                             }
                             if (corrx * lolnope > 0 && camwych[ti] > -40)
                             {
-                                cameras[ti].transform.Rotate(Vector3.right * (lolnope * 60));
+                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (lolnope * 60));
                                 camwych[ti] -= (lolnope * 60);
                             }
                             else if (rt[ti].anchoredPosition.y <= -500)
@@ -333,7 +370,7 @@ public class serv : MonoBehaviour {
                             }
                             else if (corrx * lolnope < 0 && camwych[ti]> -40)
                             {
-                                cameras[ti].transform.Rotate(Vector3.right * ((lolnope * 60) - (corrx)));
+                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((lolnope * 60) - (corrx)));
                                 camwych[ti] -= ((lolnope * 60) - (corrx));
                             }
                         }
@@ -345,7 +382,7 @@ public class serv : MonoBehaviour {
                             }
                             if (corrx * lolnope < 0 && camwych[ti] < 50)
                             {
-                                cameras[ti].transform.Rotate(Vector3.right * (-lolnope * 60));
+                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * (-lolnope * 60));
                                 camwych[ti] -= (-lolnope * 60);
                             }
                             else if (rt[ti].anchoredPosition.y >= 500)
@@ -354,7 +391,7 @@ public class serv : MonoBehaviour {
                             }
                             else if (corrx * lolnope > 0 && camwych[ti] < 50)
                             {
-                                cameras[ti].transform.Rotate(Vector3.right * ((-lolnope * 60) - (corrx)));
+                                cameras[ti].transform.parent.transform.parent.transform.Rotate(Vector3.right * ((-lolnope * 60) - (corrx)));
                                 camwych[ti] -= (-lolnope * 60) - (corrx);
                             }
                         }
@@ -439,9 +476,25 @@ public class serv : MonoBehaviour {
                     {
                         Debug.Log("wtf");
                         cube[ti].transform.position = starttrans[ti];
+                        rt[ti].anchoredPosition = startrttr[ti];
                         cube[ti].transform.rotation = startrot[ti];
                         rt[ti].localRotation = startrtrot[ti];
-                        rt[ti].anchoredPosition = startrttr[ti];
+                        if (archerrr[ti] && tmpx.x >= 0.8)
+                        {
+                            cube[ti].transform.Rotate(Vector3.up * 90);
+                            rt[ti].Rotate(Vector3.forward * -90);
+                        }
+                        else if(archerrr[ti] && tmpx.x <= -0.8)
+                        {
+                            cube[ti].transform.Rotate(Vector3.up * -90);
+                            rt[ti].Rotate(Vector3.forward * 90);
+                        }
+                    }else if (archerrr[ti]&& rhm.tc[0].phase == 3 && rhm.tc[0].tc == 3 && notmoved[ti])
+                    {
+                        archerrr[ti] = false;
+                    }else if (!archerrr[ti] && rhm.tc[0].phase == 3 && rhm.tc[0].tc == 3 && notmoved[ti]&&(tmpx.x>=0.9 || tmpx.x<=-0.9))
+                    {
+                        archerrr[ti] = true;
                     }
                     lastphase[ti] = rhm.tc[0].phase;
                 }
