@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class gaty : MonoBehaviour {
     public int stan;
-    public float hp;
+    private float hp;
     private float hpp;
 	// Use this for initialization
 	void Start () {
-        hpp = hp;
+        hpp = 100;
+        hp = hpp;
 	}
     public void Damage(float dmg)
     {
