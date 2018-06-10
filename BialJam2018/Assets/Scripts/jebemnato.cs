@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class jebemnato : MonoBehaviour {
+    public GameObject gmo;
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.G))
+        {
+            for(int i = 0; i< 6; i++)
+            {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+                Instantiate(gmo);
+            }
+        }
+    }
 }
