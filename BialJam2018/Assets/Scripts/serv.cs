@@ -31,6 +31,8 @@ public class serv : MonoBehaviour {
     public bool[] archerrr;
     public float dcien;
     public Transform trst;
+    public Vector3[] trranstest;
+    public Transform[] handstart;
     public struct touchcontrol
     {
         public int phase;
@@ -80,6 +82,7 @@ public class serv : MonoBehaviour {
         Debug.Log("Error connecting with code " + nm.ToString());
     }
     void Start () {
+        trranstest = new Vector3[2];
         archerrr = new bool[2];
         startpost = new Vector2[2];
         wektorpada = new Vector2[2];
@@ -136,7 +139,10 @@ public class serv : MonoBehaviour {
 	}
     void LateUpdate()
     {
-        trst.position = new Vector3(100,100,100);
+        for (int ti = 0; ti < 2; ti++)
+        {
+            cube[ti].transform.Translate(trranstest[ti]*2);
+        }
     }
     public void messrecived(NetworkMessage netMsg)
     {
@@ -298,10 +304,10 @@ public class serv : MonoBehaviour {
                     {
                         rt[ti].transform.Translate(Vector3.right * -tmp.z * lolnope);
                     }
-                    cube[ti].transform.Translate(Vector3.up * -tmp.x * lolnope);
-                    cube[ti].transform.Translate(Vector3.right * tmp.z * lolnope);
+                    trranstest[ti] = Vector3.forward * tmp.x * lolnope;
+                    trranstest[ti]+=Vector3.right * tmp.z * lolnope;
                     rt[ti].Rotate(Vector3.forward * -tmp.y);
-                    cube[ti].Rotate(Vector3.forward * tmp.y);
+                    cube[ti].Rotate(Vector3.up * -tmp.y);
                 }
                 else
                 {
@@ -459,6 +465,8 @@ public class serv : MonoBehaviour {
                         {
                             rt[ti].transform.Translate(Vector3.right * -corrz * lolnope);
                         }
+                        trranstest[ti] = Vector3.forward * -corrz * lolnope;
+                        trranstest[ti] += Vector3.right * -corrz * lolnope;
                         rt[ti].Rotate(Vector3.forward * -corry);
                         cube[ti].Rotate(Vector3.forward * -corry);
                     }
@@ -475,7 +483,10 @@ public class serv : MonoBehaviour {
                     if(rhm.tc[0].phase == 3 && rhm.tc[0].tc == 2 &&notmoved[ti])
                     {
                         Debug.Log("wtf");
-                        cube[ti].transform.position = starttrans[ti];
+                        Transform tmpp = handstart[ti].parent;
+                        handstart[ti].parent = cube[ti].transform.parent;
+                        cube[ti].transform.position = handstart[ti].position;
+                        handstart[ti].parent = tmpp;
                         rt[ti].anchoredPosition = startrttr[ti];
                         cube[ti].transform.rotation = startrot[ti];
                         rt[ti].localRotation = startrtrot[ti];
